@@ -16,7 +16,7 @@
                         <a :class="{'active': activeLink == 4}" @click="onMenuLink(4)">Контакты</a>
                     </div>
                     <div class="userroom">
-                        <router-link  to="/personalarea">Личный кабинет</router-link>
+                        <router-link  to="/personalarea/accounts">Личный кабинет</router-link>
                     </div>
                 </div>
             </div>

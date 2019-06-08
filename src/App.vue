@@ -1,4 +1,5 @@
 <template>
+
   <div id="app">
     <router-view></router-view>
   </div>
@@ -12,12 +13,15 @@ export default {
 </script>
 
 <style>
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 * {
   padding: 0;
   margin: 0;
   font-family: sans-serif;
   box-sizing: border-box;
   transition: 0.7s;
+  font-family: 'Montserrat', sans-serif;
 
 
   border: none;
@@ -26,5 +30,6 @@ export default {
 #app {
   text-align: center;
   border: none;
+
 }
 </style>
