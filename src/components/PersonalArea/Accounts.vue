@@ -15,7 +15,8 @@
         <div class="table">
             
             <div class="table-row table-row-headers">
-                <div class="table-item table-item-check-box table-item-check-box-header"></div>
+                <label for="checkbox" class="table-item table-item-check-box table-item-check-box-header" :class="{'active': checkAll}"></label>
+                <input v-model="checkAll" type="checkbox" id="checkbox" style="display: none;">
                 <div class="table-item table-item-service table-item-service-header">Услуга</div>
                 <div class="table-item table-item-name table-item-name-header">Имя ползователя</div>
                 <div class="table-item table-item-password table-item-password-header">Пароль</div>
@@ -71,7 +72,11 @@
 
 <script>
     export default {
-        
+        data() {
+            return {
+                checkAll: false
+            }
+        }
     }
 </script>
 
@@ -127,6 +132,7 @@
 
     .table-row {
         display: flex;
+        align-items: center;
 
     }
     .table-item {
@@ -136,16 +142,27 @@
         align-items: center;
         padding: 0 15px;
         font-size: 14px;
+        /* border: 1px solid red; */
     }
     .table-item-check-box {
-        width: 10%;
+        background: none;
+        border: 1px solid #aeaeae;
+        width: 30px;
+        height: 25px;
+        border-radius: 5px;
+        padding: 0;
+        margin-left: 30px;
+        transition: 0.3s;
+    }
+    .table-item-check-box.active {
+        background: #34bfa3;
     }
     .table-item-service {
-        width: 20%;
+        width: 25%;
 
     }
     .table-item-name {
-        width: 20%;
+        width: 25%;
     }
     .table-item-password {
         width: 10%;
@@ -159,7 +176,7 @@
     }
 
     .table-item-subscrib {
-        width: 10%;
+        width: 15%;
     }
     
 </style>

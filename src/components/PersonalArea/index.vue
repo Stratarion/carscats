@@ -14,6 +14,9 @@
                 <router-link class="lk-body-menu-link" to="/personalarea/subscriptions">Подписки</router-link>
                 <router-link class="lk-body-menu-link" to="/personalarea/emoney">Безнал</router-link>
                 <router-link class="lk-body-menu-link" to="/personalarea/journal">Журнал</router-link>
+                <router-link class="lk-body-menu-link" to="/personalarea/authorization">Аавторизация</router-link>
+                <router-link class="lk-body-menu-link" to="/personalarea/registration">Регистрация</router-link>
+
                 <button class="lk-body-menu-link" to="">Выход</button>
             </div>  
             <div class="lk-body-main">
@@ -109,6 +112,7 @@ import UserInfo from './UserInfo'
         border-bottom-right-radius: 20px;
         border-bottom-left-radius: 20px;
         overflow: auto;
+        
 
     }
     .lk-body-main-left, .lk-body-main-right {
