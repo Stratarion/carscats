@@ -15,7 +15,7 @@
                 <input type="text" class="main-row-input">
             </div>
             <div class="main-bot">
-                <div class="main-bot-btn" style="background: #34bfa3;color: #fff;">Вход</div>
+                <div class="main-bot-btn" style="background: #34bfa3;color: #fff;" @click="tryAuthorization">Вход</div>
                 <div class="main-bot-btn">Восстановить пароль</div>
             </div>
         </div>
@@ -24,7 +24,12 @@
 
 <script>
     export default {
-        
+        methods: {
+            tryAuthorization() {
+                this.$emit('tryAuthorization')
+                this.$router.push("/personalarea/profile")
+            }
+        }
     }
 </script>
 
@@ -81,5 +86,10 @@
         margin: 10px;
         font-size: 13px;
         width: 300px;
+    }
+    
+    .main-row-input:focus {
+        border-color: #22456c;
+        color: #575962;
     }
 </style>

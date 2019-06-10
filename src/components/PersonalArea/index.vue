@@ -9,23 +9,22 @@
 
         <section class="lk-body">
             <div class="lk-body-menu">
-                <router-link class="lk-body-menu-link" to="/personalarea/profile">Профиль</router-link>
-                <router-link class="lk-body-menu-link" to="/personalarea/accounts">Мои доступы</router-link>
-                <router-link class="lk-body-menu-link" to="/personalarea/subscriptions">Подписки</router-link>
-                <router-link class="lk-body-menu-link" to="/personalarea/emoney">Безнал</router-link>
-                <router-link class="lk-body-menu-link" to="/personalarea/journal">Журнал</router-link>
-                <router-link class="lk-body-menu-link" to="/personalarea/authorization">Аавторизация</router-link>
-                <router-link class="lk-body-menu-link" to="/personalarea/registration">Регистрация</router-link>
-
-                <button class="lk-body-menu-link" to="">Выход</button>
+                <router-link v-if="userStatus" class="lk-body-menu-link" to="/personalarea/profile">Профиль</router-link>
+                <router-link v-if="userStatus" class="lk-body-menu-link" to="/personalarea/accounts">Мои доступы</router-link>
+                <router-link v-if="userStatus" class="lk-body-menu-link" to="/personalarea/subscriptions">Подписки</router-link>
+                <router-link v-if="userStatus" class="lk-body-menu-link" to="/personalarea/emoney">Безнал</router-link>
+                <router-link v-if="userStatus" class="lk-body-menu-link" to="/personalarea/journal">Журнал</router-link>
+                <router-link v-if="!userStatus" class="lk-body-menu-link" to="/personalarea/authorization">Аавторизация</router-link>
+                <router-link v-if="!userStatus" class="lk-body-menu-link" to="/personalarea/registration">Регистрация</router-link>
+                <button v-if="userStatus" class="lk-body-menu-link" @click="logOut">Выход</button>
             </div>  
             <div class="lk-body-main">
-                <div class="lk-body-main-left">
+                <div class="lk-body-main-left" v-if="userStatus">
                     <!-- Инфо о пользователе -->
                     <user-info></user-info>
                 </div>
                 <div class="lk-body-main-right">
-                    <router-view></router-view>
+                    <router-view @tryAuthorization="tryAuthorization"></router-view>
                 </div>
 
             </div>
@@ -47,6 +46,21 @@ import UserInfo from './UserInfo'
     export default {
         components: {
             UserInfo,
+        },
+        computed: {
+            userStatus() {
+                return this.$store.state.user.status
+            }
+        },
+        methods: {
+            tryAuthorization() {
+                this.$store.state.user.status = true
+                this.$router.push("/personalarea/profile")
+            },
+            logOut() {
+                this.$router.push("/")
+                this.$store.state.user.status = false
+            }
         }
     }
 </script>

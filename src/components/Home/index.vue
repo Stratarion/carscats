@@ -16,7 +16,7 @@
                         <a :class="{'active': activeLink == 4}" @click="onMenuLink(4)">Контакты</a>
                     </div>
                     <div class="userroom">
-                        <router-link  to="/personalarea/accounts">Личный кабинет</router-link>
+                        <router-link  :to="lkLink()">Личный кабинет</router-link>
                     </div>
                 </div>
             </div>
@@ -188,6 +188,13 @@
         methods: {
             onMenuLink(number) {
                 this.activeLink = number
+            },
+            lkLink() {
+                if (this.$store.state.user.status) {
+                    return '/personalarea/accounts'
+                } else {
+                    return '/personalarea/authorization'
+                }
             }
         },
         components: {
