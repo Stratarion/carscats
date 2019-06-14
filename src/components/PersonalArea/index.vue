@@ -9,32 +9,39 @@
 
         <section class="lk-body">
             <div class="lk-body-menu">
-                <router-link v-if="userStatus" class="lk-body-menu-link" to="/personalarea/profile">Профиль</router-link>
-                <router-link v-if="userStatus" class="lk-body-menu-link" to="/personalarea/accounts">Мои доступы</router-link>
-                <router-link v-if="userStatus" class="lk-body-menu-link" to="/personalarea/subscriptions">Подписки</router-link>
-                <router-link v-if="userStatus" class="lk-body-menu-link" to="/personalarea/emoney">Безнал</router-link>
-                <router-link v-if="userStatus" class="lk-body-menu-link" to="/personalarea/journal">Журнал</router-link>
-                <router-link v-if="!userStatus" class="lk-body-menu-link" to="/personalarea/authorization">Аавторизация</router-link>
-                <router-link v-if="!userStatus" class="lk-body-menu-link" to="/personalarea/registration">Регистрация</router-link>
+                <router-link v-if="userStatus"  class="lk-body-menu-link" to="/personalarea/profile">
+                    <span @click="changeTab(0)">Профиль</span> 
+                </router-link>
+                <router-link v-if="userStatus" class="lk-body-menu-link" to="/personalarea/accounts">
+                    <span @click="changeTab(1)">Мои доступы</span>
+                </router-link>
+                <router-link v-if="userStatus" class="lk-body-menu-link" to="/personalarea/subscriptions">
+                    <span @click="changeTab(2)">Подписки</span>
+                </router-link>
+                <router-link v-if="userStatus" class="lk-body-menu-link" to="/personalarea/emoney">
+                    <span @click="changeTab(3)">Безнал</span>
+                </router-link>
+                <router-link v-if="userStatus" class="lk-body-menu-link" to="/personalarea/journal">
+                    <span @click="changeTab(4)">Журнал</span>
+                </router-link>
+                <router-link v-if="!userStatus" class="lk-body-menu-link" to="/personalarea/authorization">
+                    <span @click="changeTab(5)">Аавторизация</span>
+                </router-link>
+                <router-link v-if="!userStatus" class="lk-body-menu-link" to="/personalarea/registration">
+                    <span @click="changeTab(6)">Регистрация</span>
+                </router-link>
                 <button v-if="userStatus" class="lk-body-menu-link" @click="logOut">Выход</button>
+
             </div>  
             <div class="lk-body-main">
                 <div class="lk-body-main-left" v-if="userStatus">
                     <!-- Инфо о пользователе -->
                     <user-info></user-info>
                 </div>
-                <div class="lk-body-main-right">
+                <div :class="{'lk-body-main-right': tabSize, 'lk-body-main-right-small': !tabSize}">
                     <router-view @tryAuthorization="tryAuthorization"></router-view>
                 </div>
-
             </div>
-
-
-
-
-
-
-
         </section>
         
     </div>
@@ -44,6 +51,12 @@
 
 import UserInfo from './UserInfo'
     export default {
+        data() {
+            return {
+                currentTab: 0,
+                tabSize: false
+            }
+        },
         components: {
             UserInfo,
         },
@@ -52,8 +65,29 @@ import UserInfo from './UserInfo'
                 return this.$store.state.user.status
             }
         },
+        created() {
+            if (this.$store.state.user.status) {
+                this.changeTab(1)
+            } else {
+                this.changeTab(5)
+            }
+        },
+        watch: {
+            currentTab() {
+                if (this.currentTab < 5) {
+                    this.tabSize = true
+                } else {
+                    this.tabSize = false
+                }
+            }
+        },
         methods: {
+            changeTab(index) {
+                this.currentTab = index
+
+            },
             tryAuthorization() {
+                this.changeTab(0)
                 this.$store.state.user.status = true
                 this.$router.push("/personalarea/profile")
             },
@@ -129,7 +163,7 @@ import UserInfo from './UserInfo'
         
 
     }
-    .lk-body-main-left, .lk-body-main-right {
+    .lk-body-main-left, .lk-body-main-right, .lk-body-main-right-small {
         background: #fff;
         /* flex-grow: 1;   */
         margin: 0 20px;
@@ -141,5 +175,8 @@ import UserInfo from './UserInfo'
     }
     .lk-body-main-right {
         width: 70%;
+    }
+    .lk-body-main-right-small {
+        width: 500px;
     }
 </style>

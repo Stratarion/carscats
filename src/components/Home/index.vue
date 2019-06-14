@@ -16,7 +16,7 @@
                         <a :class="{'active': activeLink == 4}" @click="onMenuLink(4)">Контакты</a>
                     </div>
                     <div class="userroom">
-                        <router-link  :to="lkLink()">Личный кабинет</router-link>
+                        <router-link :test="'test'"  :to="lkLink()">Личный кабинет</router-link>
                     </div>
                 </div>
             </div>
@@ -137,33 +137,26 @@
             <div class="programm-screens-line"></div>
             <p class="programm-screens-desription">Мы разработали простое и удобное решение для подключения к каталогам.</p>
             <div class="programm-screens-gallery">
-                <div class="programm-screens-gallery-item">
-                    <div class="programm-screens-gallery-item-hover">Доп инфа aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
-                    <img src="https://carscats.ru/bitrix/templates/landing/img/crc/crc01.jpg" alt="">
-                </div>
-                <div class="programm-screens-gallery-item">
-                    <div class="programm-screens-gallery-item-hover">Доп инфа aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
-                    <img src="https://carscats.ru/bitrix/templates/landing/img/crc/crc01.jpg" alt="">
-                </div>
-                <div class="programm-screens-gallery-item">
-                    <div class="programm-screens-gallery-item-hover">Доп инфа aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
-                    <img src="https://carscats.ru/bitrix/templates/landing/img/crc/crc01.jpg" alt="">
-                </div>
-                <div class="programm-screens-gallery-item">
-                    <div class="programm-screens-gallery-item-hover">Доп инфа aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
-                    <img src="https://carscats.ru/bitrix/templates/landing/img/crc/crc01.jpg" alt="">
-                </div>
-                <div class="programm-screens-gallery-item">
-                    <div class="programm-screens-gallery-item-hover">Доп инфа aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
-                    <img src="https://carscats.ru/bitrix/templates/landing/img/crc/crc01.jpg" alt="">
-                </div>
-                <div class="programm-screens-gallery-item">
-                    <div class="programm-screens-gallery-item-hover">Доп инфа aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
-                    <img src="https://carscats.ru/bitrix/templates/landing/img/crc/crc01.jpg" alt="">
+                <div class="programm-screens-gallery-item" v-for="(screen, index) in programmScreensList" :key="screen.id" @click="openProgrammScreensModal(index)">
+                    <div class="programm-screens-gallery-item-hover">{{ cutText(35, screen.description) }}</div>
+                    <div class="programm-screens-gallery-item-image" v-bind:style="{ backgroundImage: 'url(' + screen.url + ')' }"></div>
                 </div>
             </div>
         </div>
+        <modal-template  v-if="programmScreensModalStatus" @close="closeModalProgrammScreens">
+            <div slot="body">
+                <div class="slider">
+                    <div class="slider-btn slider-btn-prev" @click="changeSlide('prev')"></div>
+                    <div class="slider-btn slider-btn-next" @click="changeSlide('next')"></div>
 
+                    <img class="slider-slide slider-slide-absolute slider-slide-left" :src="programmScreensList[currentProgrammScreen-1].url" v-if="programmScreensList[currentProgrammScreen-1]">
+                    <div class="slider-slide slider-slide-current" v-bind:style="{ backgroundImage: 'url(' + programmScreensList[currentProgrammScreen].url + ')' }"></div>
+                    <img class="slider-slide slider-slide-absolute slider-slide-right" :src="programmScreensList[currentProgrammScreen+1].url" v-if="programmScreensList[currentProgrammScreen+1]">
+                </div>
+
+                <p class="slider-description">{{ programmScreensList[currentProgrammScreen].description }}</p>
+            </div>
+        </modal-template>
         <div class="footer">
             <a class="footer-link" href="">Договор оферты</a>
             <a class="footer-link" href="">Политика конфеденциальности</a>
@@ -175,17 +168,84 @@
 
 <script>
 
-
+import modalTemplate from '@/components/functional/modalWIndow.vue'
 
 
     export default {
         data() {
             return {
+                // статус модального окна. false - закрыто.
+                programmScreensModalStatus: false,
+
+                // id текущего скрина для полного просмотра фотографий
+                currentProgrammScreen: 0,
+
+                programmScreensList: [
+                    {
+                        url: 'https://carscats.ru/bitrix/templates/landing/img/crc/crc01.jpg',
+                        description: 'Звание лучшей городской модели британцы отдали Hyundai i10 в возрасте от 1 до 3 лет, а компактного автомобиля — хетчбэку Ford Fiesta 2007—2010 годов выпуска. Главную награду в категории «семейная машина» забрал трехлетний SEAT Leon, «компактный SUV» — шестилетний Nissan Qashqai.',
+                        id: '1'
+                    },
+                    {
+                        url: 'https://cdnimg.rg.ru/img/content/155/89/32/2_121_d_850.jpg',
+                        description: 'Mazda CX-5 2011—2013 года стала лучшим большим SUV, а Audi Q7, выпущенная после 2015-го, — лучшим люксовым кроссовером. В категории минивэнов одержал победу Citroёn C3 Picasso в возрасте 7—10 лет, в н',
+                        id: '2'
+                    },
+                    {
+                        url: 'https://www.autostat.ru/application/includes/blocks/big_photo/images/cache/000/066/555/aee01da0-670-0.jpg',
+                        description: 'tate тех же годов. Самым привлекательным «горячим» хетчем жюри назвало Ford Fiesta ST 1—3 лет, кабриолетом — BMW Z4 2007—2010 годов, купе — Audi TT 2011—2013-х.',
+                        id: '3'
+                    },
+                    {
+                        url: 'http://www.vladtime.ru/uploads/posts/2017-01/1483689641_avto.jpg',
+                        description: 'Audi R8 в возрасте 7—10 лет, согласно результатам, лучший спортивный автомобиль; Renault Zoe 4—6 лет — лучшая экологически чистая модель.',
+                        id: '4'
+                    },
+                    {
+                        url: 'https://www.avtovzglyad.ru/media/article/2-308.17.jpg.740x555_q85_box-162%2C0%2C1465%2C977_crop_detail_upscale.jpg',
+                        description: 'В категориях «премиальный автомобиль» и «люксовый автомобиль» победили седаны BMW 3-й и 5-й серии.',
+                        id: '5'
+                    },
+                    {
+                        url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtn03AQvIDLBh7bws93t7gA0AnwqLyf1SyOwvEfJFcSSe0XTwB',
+                        description: 'Стоит отметить, что в лидерах также оказались хетчбэк KIA Cee’d в возрасте от 4 до 6 лет (номинация «семейный автомобиль») и Sorento Prime 1—3 лет («большой кроссовер»).',
+                        id: '6'
+                    },
+                ],
+
+                // текущий таб
                 activeLink: 0,
+
+                // заголовок, типо слоган на первом экране
                 firstScreenHeader: 'НАШИ РЕШЕНИЯ ДЛЯ АВТОБИЗНЕСА'
             }
         },
         methods: {
+            changeSlide(direction) {
+                if (direction === 'next') {
+                    if (this.currentProgrammScreen !== this.programmScreensList.length) {
+                        this.currentProgrammScreen++
+                    }
+                } else {
+                    if (this.currentProgrammScreen !== 0) {
+                        this.currentProgrammScreen--
+                    }
+                }
+            },
+            cutText(maxSize, text) {
+                let filtredText = text
+                if (text.length > maxSize) {
+                    filtredText = text.slice(0, maxSize) + '...'
+                }
+                return filtredText
+            },
+            closeModalProgrammScreens() {
+                this.programmScreensModalStatus = false
+            },
+            openProgrammScreensModal(index) {
+                this.currentProgrammScreen = index
+                this.programmScreensModalStatus = true
+            },
             onMenuLink(number) {
                 this.activeLink = number
             },
@@ -198,6 +258,7 @@
             }
         },
         components: {
+            modalTemplate
         }
     }
 </script>
@@ -478,6 +539,14 @@
     height: 100%;
     width: 100%;
 }
+.programm-screens-gallery-item-image {
+    width: 325px;
+    height: 195px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #aeaeae20;
+}
 .programm-screens-gallery-item-hover {
     position: absolute;
     cursor: pointer;
@@ -520,6 +589,71 @@
     border-right: 1px solid #fff;
 }
 
+
+/* стили модального окна  */
+.slider {
+    position: relative;
+    height: 500px;
+
+}
+
+
+.slider-slide {
+    height: 500px;
+}
+.slider-slide-current {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 800px;
+    margin: 0 auto;
+}
+.slider-slide-absolute {
+    position: absolute;
+    display: none;
+}
+.slider-slide-left {
+    left: -40%;
+}
+.slider-slide-right {
+    right: -40%;
+}
+
+.slider-btn {
+    height: 100%;
+    width: 45%;
+    position: absolute;
+    cursor: pointer;
+}
+.slider-btn-next {
+    right: 0;
+}
+
+.slider-btn::after {
+    content: '';
+    width:50px;
+    height: 50px;
+    position: absolute;
+    top:50%;
+    margin-top: -25px;
+    background: url(../../img/right-arrow.svg)
+}
+.slider-btn-next::after {
+    right: 0;
+}
+.slider-btn-prev::after {
+    left: 0;
+    transform: rotate(180deg);
+}
+.slider-btn-prev {
+    left: 0;
+}
+
+.slider-description {
+    margin-top: 40px;
+    padding: 0 40px;
+    text-align: left;
+}
 
 /* медиа */
 
