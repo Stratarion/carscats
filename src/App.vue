@@ -2,6 +2,7 @@
 
   <div id="app">
     <router-view></router-view>
+
   </div>
 </template>
 
@@ -22,8 +23,7 @@ export default {
   box-sizing: border-box;
   transition: 0.7s;
   font-family: 'Montserrat', sans-serif;
-
-
+  scroll-behavior: smooth;
   border: none;
   outline: none;
 }

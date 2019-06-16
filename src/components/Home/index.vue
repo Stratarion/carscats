@@ -1,148 +1,166 @@
 <template>
-    <div class="container">
-        <div class="menu">
-            <div class="menu-top">
+    <section class="container">
+        <section id='first'>
+            <div class="menu">
+                <div class="menu-top">
 
-                <div class="menu-top-content">
-                    <router-link tag="div" class="logo" to="/" >
-                        <img src="https://carscats.ru/bitrix/templates/landing/img/logo.png"  alt="">
-                    </router-link>
-                    <div >
-                    </div>
-                    <div class="menu-top-links">
-                        <a :class="{'active': activeLink == 1}" @click="onMenuLink(1)">Тарифы</a>
-                        <a :class="{'active': activeLink == 2}" @click="onMenuLink(2)">Видео</a>
-                        <a :class="{'active': activeLink == 3}" @click="onMenuLink(3)">Галерея</a>
-                        <a :class="{'active': activeLink == 4}" @click="onMenuLink(4)">Контакты</a>
-                    </div>
-                    <div class="userroom">
-                        <router-link :test="'test'"  :to="lkLink()">Личный кабинет</router-link>
+                    <div class="menu-top-content">
+                        <router-link tag="div" class="logo" to="/" >
+                            <img src="https://carscats.ru/bitrix/templates/landing/img/logo.png"  alt="">
+                        </router-link>
+                        <div >
+                        </div>
+                        <div class="menu-top-links">
+                            <a href="#first" :class="{'active': activeLink == 1}" @click="onMenuLink(1)">Тарифы</a>
+                            <a href="#second" :class="{'active': activeLink == 2}" @click="onMenuLink(2)">Видео</a>
+                            <a href='#thirst' :class="{'active': activeLink == 3}" @click="onMenuLink(3)">Галерея</a>
+                            <a href='#four' :class="{'active': activeLink == 4}" @click="onMenuLink(4)">Контакты</a>
+                        </div>
+                        <div class="userroom">
+                            <router-link :test="'test'"  :to="lkLink()">Личный кабинет</router-link>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="first-screen">
-            <h2 class="first-screen-header"> {{ firstScreenHeader }} </h2>
-            <div class="cards-services">
-                <div class="cards-services-item">
-                    <img class="cards-services-item-logotype" src="https://carscats.ru/bitrix/templates/landing/img/epc-logo.png" alt="">
-                    <h3 class="cards-services-item-header">EPC ONLINE</h3>
-                    <p class="cards-services-item-description">Доступ к полному набору программ для подбора запчастей (включая VAG группу)</p>
-                    <button class="cards-services-item-btn">Купить</button>
-                </div>
-                <div class="cards-services-item">
-                    <img class="cards-services-item-logotype" src="https://carscats.ru/bitrix/templates/landing/img/epc-logo.png" alt="">
-                    <h3 class="cards-services-item-header">EPC ONLINE</h3>
-                    <p class="cards-services-item-description">Доступ к полному набору программ для подбора запчастей (включая VAG группу)</p>
-                    <button class="cards-services-item-btn">Купить</button>
-                </div>
-                <div class="cards-services-item">
-                    <img class="cards-services-item-logotype" src="https://carscats.ru/bitrix/templates/landing/img/epc-logo.png" alt="">
-                    <h3 class="cards-services-item-header">EPC ONLINE</h3>
-                    <p class="cards-services-item-description">Доступ к полному набору программ для подбора запчастей (включая VAG группу)</p>
-                    <button class="cards-services-item-btn">Купить</button>
-                </div>
-                <div class="cards-services-item">
-                    <img class="cards-services-item-logotype" src="https://carscats.ru/bitrix/templates/landing/img/epc-logo.png" alt="">
-                    <h3 class="cards-services-item-header">EPC ONLINE</h3>
-                    <p class="cards-services-item-description">Доступ к полному набору программ для подбора запчастей (включая VAG группу)</p>
-                    <button class="cards-services-item-btn">Купить</button>
-                </div>
-                <div class="cards-services-item">
-                    <img class="cards-services-item-logotype" src="https://carscats.ru/bitrix/templates/landing/img/epc-logo.png" alt="">
-                    <h3 class="cards-services-item-header">EPC ONLINE</h3>
-                    <p class="cards-services-item-description">Доступ к полному набору программ для подбора запчастей (включая VAG группу)</p>
-                    <button class="cards-services-item-btn">Купить</button>
+            <div class="first-screen">
+                <h2 class="first-screen-header"> {{ firstScreenHeader }} </h2>
+                <div class="cards-services">
+                    <div class="cards-services-item">
+                        <img class="cards-services-item-logotype" src="https://carscats.ru/bitrix/templates/landing/img/epc-logo.png" alt="">
+                        <h3 class="cards-services-item-header">EPC ONLINE</h3>
+                        <p class="cards-services-item-description">Доступ к полному набору программ для подбора запчастей (включая VAG группу)</p>
+                        <button class="cards-services-item-btn">Купить</button>
+                    </div>
+                    <div class="cards-services-item">
+                        <img class="cards-services-item-logotype" src="https://carscats.ru/bitrix/templates/landing/img/epc-logo.png" alt="">
+                        <h3 class="cards-services-item-header">EPC ONLINE</h3>
+                        <p class="cards-services-item-description">Доступ к полному набору программ для подбора запчастей (включая VAG группу)</p>
+                        <button class="cards-services-item-btn">Купить</button>
+                    </div>
+                    <div class="cards-services-item">
+                        <img class="cards-services-item-logotype" src="https://carscats.ru/bitrix/templates/landing/img/epc-logo.png" alt="">
+                        <h3 class="cards-services-item-header">EPC ONLINE</h3>
+                        <p class="cards-services-item-description">Доступ к полному набору программ для подбора запчастей (включая VAG группу)</p>
+                        <button class="cards-services-item-btn">Купить</button>
+                    </div>
+                    <div class="cards-services-item">
+                        <img class="cards-services-item-logotype" src="https://carscats.ru/bitrix/templates/landing/img/epc-logo.png" alt="">
+                        <h3 class="cards-services-item-header">EPC ONLINE</h3>
+                        <p class="cards-services-item-description">Доступ к полному набору программ для подбора запчастей (включая VAG группу)</p>
+                        <button class="cards-services-item-btn">Купить</button>
+                    </div>
+                    <div class="cards-services-item">
+                        <img class="cards-services-item-logotype" src="https://carscats.ru/bitrix/templates/landing/img/epc-logo.png" alt="">
+                        <h3 class="cards-services-item-header">EPC ONLINE</h3>
+                        <p class="cards-services-item-description">Доступ к полному набору программ для подбора запчастей (включая VAG группу)</p>
+                        <button class="cards-services-item-btn">Купить</button>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="plans">
-            <h3 class="plans-header">тарифы</h3>
-            <div class="plans-header-lens"></div>
-            <p class="plans-description">Вы можете выбрать подходящий именно Вам тарифный план</p>
-            <div class="plans-list">
-                <div class="plans-list-item">
-                    <h3 class="plans-list-item-header">Заголовок</h3>
-                    <div class="plans-list-item-body">
-                        <h4 class="plans-list-item-body-price">₽ 1500/мес</h4>
-                        <h5 class="plans-list-item-body-option">характеристика</h5>
-                        <h5 class="plans-list-item-body-option">характеристика</h5>
-                        <h5 class="plans-list-item-body-option">характеристика</h5>
-                        <h5 class="plans-list-item-body-option">характеристика</h5>
-                        <div class="plans-list-item-body-btn">Купить</div>
+            <div class="plans">
+                <h3 class="plans-header">тарифы</h3>
+                <div class="plans-header-lens"></div>
+                <p class="plans-description">Вы можете выбрать подходящий именно Вам тарифный план</p>
+                <div class="plans-list">
+                    <div class="plans-list-item">
+                        <h3 class="plans-list-item-header">Заголовок</h3>
+                        <div class="plans-list-item-body">
+                            <h4 class="plans-list-item-body-price">₽ 1500/мес</h4>
+                            <h5 class="plans-list-item-body-option">характеристика</h5>
+                            <h5 class="plans-list-item-body-option">характеристика</h5>
+                            <h5 class="plans-list-item-body-option">характеристика</h5>
+                            <h5 class="plans-list-item-body-option">характеристика</h5>
+                            <div class="plans-list-item-body-btn">Купить</div>
+                        </div>
                     </div>
-                </div>
-                <div class="plans-list-item">
-                    <h3 class="plans-list-item-header">Заголовок</h3>
-                    <div class="plans-list-item-body">
-                        <h4 class="plans-list-item-body-price">₽ 1500/мес</h4>
-                        <h5 class="plans-list-item-body-option">характеристика</h5>
-                        <h5 class="plans-list-item-body-option">характеристика</h5>
-                        <h5 class="plans-list-item-body-option">характеристика</h5>
-                        <h5 class="plans-list-item-body-option">характеристика</h5>
-                        <div class="plans-list-item-body-btn">Купить</div>
+                    <div class="plans-list-item">
+                        <h3 class="plans-list-item-header">Заголовок</h3>
+                        <div class="plans-list-item-body">
+                            <h4 class="plans-list-item-body-price">₽ 1500/мес</h4>
+                            <h5 class="plans-list-item-body-option">характеристика</h5>
+                            <h5 class="plans-list-item-body-option">характеристика</h5>
+                            <h5 class="plans-list-item-body-option">характеристика</h5>
+                            <h5 class="plans-list-item-body-option">характеристика</h5>
+                            <div class="plans-list-item-body-btn">Купить</div>
+                        </div>
                     </div>
-                </div>
-                <div class="plans-list-item">
-                    <h3 class="plans-list-item-header">Заголовок</h3>
-                    <div class="plans-list-item-body">
-                        <h4 class="plans-list-item-body-price">₽ 1500/мес</h4>
-                        <h5 class="plans-list-item-body-option">характеристика</h5>
-                        <h5 class="plans-list-item-body-option">характеристика</h5>
-                        <h5 class="plans-list-item-body-option">характеристика</h5>
-                        <h5 class="plans-list-item-body-option">характеристика</h5>
-                        <div class="plans-list-item-body-btn">Купить</div>
+                    <div class="plans-list-item">
+                        <h3 class="plans-list-item-header">Заголовок</h3>
+                        <div class="plans-list-item-body">
+                            <h4 class="plans-list-item-body-price">₽ 1500/мес</h4>
+                            <h5 class="plans-list-item-body-option">характеристика</h5>
+                            <h5 class="plans-list-item-body-option">характеристика</h5>
+                            <h5 class="plans-list-item-body-option">характеристика</h5>
+                            <h5 class="plans-list-item-body-option">характеристика</h5>
+                            <div class="plans-list-item-body-btn">Купить</div>
+                        </div>
                     </div>
-                </div>
-                <div class="plans-list-item">
-                    <h3 class="plans-list-item-header">Заголовок</h3>
-                    <div class="plans-list-item-body">
-                        <h4 class="plans-list-item-body-price">₽ 1500/мес</h4>
-                        <h5 class="plans-list-item-body-option">характеристика</h5>
-                        <h5 class="plans-list-item-body-option">характеристика</h5>
-                        <h5 class="plans-list-item-body-option">характеристика</h5>
-                        <h5 class="plans-list-item-body-option">характеристика</h5>
-                        <div class="plans-list-item-body-btn">Купить</div>
+                    <div class="plans-list-item">
+                        <h3 class="plans-list-item-header">Заголовок</h3>
+                        <div class="plans-list-item-body">
+                            <h4 class="plans-list-item-body-price">₽ 1500/мес</h4>
+                            <h5 class="plans-list-item-body-option">характеристика</h5>
+                            <h5 class="plans-list-item-body-option">характеристика</h5>
+                            <h5 class="plans-list-item-body-option">характеристика</h5>
+                            <h5 class="plans-list-item-body-option">характеристика</h5>
+                            <div class="plans-list-item-body-btn">Купить</div>
+                        </div>
                     </div>
-                </div>
-                <div class="plans-list-item">
-                    <h3 class="plans-list-item-header">Заголовок</h3>
-                    <div class="plans-list-item-body">
-                        <h4 class="plans-list-item-body-price">₽ 1500/мес</h4>
-                        <h5 class="plans-list-item-body-option">характеристика</h5>
-                        <h5 class="plans-list-item-body-option">характеристика</h5>
-                        <h5 class="plans-list-item-body-option">характеристика</h5>
-                        <h5 class="plans-list-item-body-option">характеристика</h5>
-                        <div class="plans-list-item-body-btn">Купить</div>
+                    <div class="plans-list-item">
+                        <h3 class="plans-list-item-header">Заголовок</h3>
+                        <div class="plans-list-item-body">
+                            <h4 class="plans-list-item-body-price">₽ 1500/мес</h4>
+                            <h5 class="plans-list-item-body-option">характеристика</h5>
+                            <h5 class="plans-list-item-body-option">характеристика</h5>
+                            <h5 class="plans-list-item-body-option">характеристика</h5>
+                            <h5 class="plans-list-item-body-option">характеристика</h5>
+                            <div class="plans-list-item-body-btn">Купить</div>
+                        </div>
                     </div>
-                </div>
-                
-            </div>
-        </div>
-
-        <div class="video-instructions">
-            <h2>видеоинструкции</h2>
-            <div class="video-instructions-body">
-                <p class="video-instructions-body-description">Хотите разобраться, как работать с каталогами? Посмотрите наши короткие обучающие видео на эту тeму</p>
-                <div class="video-instructions-body-play">
-                    <img src="http://kulinar.moscow/wp-content/uploads/2019/04/playb.png" alt="">
+                    
                 </div>
             </div>
-        </div>
-
-        <div class="programm-screens">
-            <h2 class="programm-screens-header">программа для подключения</h2>
-            <div class="programm-screens-line"></div>
-            <p class="programm-screens-desription">Мы разработали простое и удобное решение для подключения к каталогам.</p>
-            <div class="programm-screens-gallery">
-                <div class="programm-screens-gallery-item" v-for="(screen, index) in programmScreensList" :key="screen.id" @click="openProgrammScreensModal(index)">
-                    <div class="programm-screens-gallery-item-hover">{{ cutText(35, screen.description) }}</div>
-                    <div class="programm-screens-gallery-item-image" v-bind:style="{ backgroundImage: 'url(' + screen.url + ')' }"></div>
+        </section>
+        
+        <section id='second'>
+            <div class="video-instructions">
+                <h2>видеоинструкции</h2>
+                <div class="video-instructions-body">
+                    <p class="video-instructions-body-description">Хотите разобраться, как работать с каталогами? Посмотрите наши короткие обучающие видео на эту тeму</p>
+                    <div class="video-instructions-body-play">
+                        <img src="http://kulinar.moscow/wp-content/uploads/2019/04/playb.png" alt="">
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
+        
+        <section id='thirst'>
+            <div class="programm-screens">
+                <h2 class="programm-screens-header">программа для подключения</h2>
+                <div class="programm-screens-line"></div>
+                <p class="programm-screens-desription">Мы разработали простое и удобное решение для подключения к каталогам.</p>
+                <div class="programm-screens-gallery">
+                    <div class="programm-screens-gallery-item" v-for="(screen, index) in programmScreensList" :key="screen.id" @click="openProgrammScreensModal(index)">
+                        <div class="programm-screens-gallery-item-hover">{{ cutText(35, screen.description) }}</div>
+                        <div class="programm-screens-gallery-item-image" v-bind:style="{ backgroundImage: 'url(' + screen.url + ')' }"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id='four'>
+            <div class="footer">
+                <a class="footer-link" href="">Договор оферты</a>
+                <a class="footer-link" href="">Политика конфеденциальности</a>
+                <p class="footer-text">2018 © Carscats.ru</p>
+            </div>
+        </section>
+        
+
+        <!-- модальные окна -->
+
         <modal-template  v-if="programmScreensModalStatus" @close="closeModalProgrammScreens">
             <div slot="body">
                 <div class="slider">
@@ -157,13 +175,10 @@
                 <p class="slider-description">{{ programmScreensList[currentProgrammScreen].description }}</p>
             </div>
         </modal-template>
-        <div class="footer">
-            <a class="footer-link" href="">Договор оферты</a>
-            <a class="footer-link" href="">Политика конфеденциальности</a>
-            <p class="footer-text">2018 © Carscats.ru</p>
-        </div>
 
-    </div>
+        <!-- конец модальных окон -->
+
+    </section>
 </template>
 
 <script>
@@ -214,7 +229,7 @@ import modalTemplate from '@/components/functional/modalWIndow.vue'
                 ],
 
                 // текущий таб
-                activeLink: 0,
+                activeLink: 1,
 
                 // заголовок, типо слоган на первом экране
                 firstScreenHeader: 'НАШИ РЕШЕНИЯ ДЛЯ АВТОБИЗНЕСА'
@@ -259,11 +274,47 @@ import modalTemplate from '@/components/functional/modalWIndow.vue'
         },
         components: {
             modalTemplate
+        },
+        mounted() {
+            var firstSection = document.getElementById('first');
+            var firstSectionBot = firstSection.getBoundingClientRect().bottom + window.pageYOffset - 180;
+
+            var secondSection = document.getElementById('second');
+            var secondSectionBot = secondSection.getBoundingClientRect().bottom + window.pageYOffset - 180;
+
+            var thirstSection = document.getElementById('thirst');
+            var thirstSectionBot = thirstSection.getBoundingClientRect().bottom + window.pageYOffset - 180;
+
+            var that = this
+
+            window.onscroll = function() {
+                if (window.pageYOffset < firstSectionBot) {
+                    console.log('1', firstSectionBot)
+                    that.onMenuLink(1)
+                } else if (window.pageYOffset < secondSectionBot) {
+                    that.onMenuLink(2)
+                } else if (window.pageYOffset < thirstSectionBot) {
+                    that.onMenuLink(3)
+                } else {
+                    that.onMenuLink(4)
+                }
+            }
+
         }
     }
 </script>
 
 <style scoped>
+section {
+    scroll-behavior: smooth; 
+}
+#second, #thirst, #four {
+    padding-top: 80px;
+	margin-top: -80px;
+	-webkit-background-clip: content-box;
+	background-clip: content-box;
+    /* scroll-behavior: smooth;  */
+}
 .menu {
     position: fixed;
     margin: 0 auto;
@@ -282,12 +333,22 @@ import modalTemplate from '@/components/functional/modalWIndow.vue'
     max-width: 90%;
     margin: 0 auto;
 }
+.menu-top-content .logo img {
+    cursor: pointer;
+}
 .menu-top-links a {
     margin-right: 10px;
     cursor: pointer;
+    text-decoration: none;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 20px;
+
+
 }
 .menu-top-links a.active {
-    color: red;
+    background-color: #28446F;
+    color:#fff;
 }
 
 
@@ -295,6 +356,7 @@ import modalTemplate from '@/components/functional/modalWIndow.vue'
 .container {
     text-align: center;
     position: relative;
+    scroll-behavior: smooth;
     
 }
 .first-screen {
@@ -313,6 +375,7 @@ import modalTemplate from '@/components/functional/modalWIndow.vue'
     font-size: 52px;
     max-width: 700px;
     margin: 0 auto;
+    user-select: none;
 }
 
 
@@ -519,6 +582,7 @@ import modalTemplate from '@/components/functional/modalWIndow.vue'
     font-weight: 400;
     margin: 30px 0;
     padding: 0 20px;
+
 }
 .programm-screens-gallery {
     display: flex;
@@ -565,6 +629,7 @@ import modalTemplate from '@/components/functional/modalWIndow.vue'
     padding: 10px;
     word-break: break-all;
     overflow: hidden;
+    user-select: none;
 }
 .programm-screens-gallery-item-hover:hover {
     background-color: rgba(0,0,0,  0.8);
@@ -621,7 +686,7 @@ import modalTemplate from '@/components/functional/modalWIndow.vue'
 
 .slider-btn {
     height: 100%;
-    width: 45%;
+    width: 20%;
     position: absolute;
     cursor: pointer;
 }
@@ -636,13 +701,23 @@ import modalTemplate from '@/components/functional/modalWIndow.vue'
     position: absolute;
     top:50%;
     margin-top: -25px;
-    background: url(../../img/right-arrow.svg)
+    padding: 10px;
+    opacity: 0.1;
+    background-color: #aeaeae;
+    border-radius: 50%;
+    background-size: 50px;
+    background-repeat: no-repeat;
+    background-position: 15px 10px;
+    background-image: url(../../img/right-arrow.svg)
+}
+.slider-btn:hover:after {
+    opacity: 0.5;
 }
 .slider-btn-next::after {
-    right: 0;
+    right: -20px;
 }
 .slider-btn-prev::after {
-    left: 0;
+    left: -20px;
     transform: rotate(180deg);
 }
 .slider-btn-prev {
