@@ -27,6 +27,7 @@ export default {
   border: none;
   outline: none;
 }
+
 #app {
   text-align: center;
   border: none;

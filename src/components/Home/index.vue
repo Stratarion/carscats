@@ -289,7 +289,6 @@ import modalTemplate from '@/components/functional/modalWIndow.vue'
 
             window.onscroll = function() {
                 if (window.pageYOffset < firstSectionBot) {
-                    console.log('1', firstSectionBot)
                     that.onMenuLink(1)
                 } else if (window.pageYOffset < secondSectionBot) {
                     that.onMenuLink(2)
@@ -341,8 +340,10 @@ section {
     cursor: pointer;
     text-decoration: none;
     color: black;
-    padding: 10px 20px;
+    padding: 8px 20px;
     border-radius: 20px;
+    width: 120px;
+    display: inline-block;
 
 
 }

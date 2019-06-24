@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import App from './App.vue';
 import VueRouter from 'vue-router';
+import Vuelidate from 'vuelidate'
 
 import router from './router';
 import store from './store'
@@ -16,6 +17,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 library.add(fasUser, fasSpinner, farUser, farIdBadge, faCog, faAngleDoubleDown)
 
 Vue.use(VueRouter);
+Vue.use(Vuelidate)
 Vue.config.productionTip = false;
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
