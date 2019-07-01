@@ -10,37 +10,37 @@
         <section class="lk-body">
             <div class="lk-body-menu">
                 <!-- <router-link to="/personalarea/profile"> -->
-                    <span v-if="userStatus"  class="lk-body-menu-link" @click="changeTab(0)">Профиль</span> 
+                    <span v-if="isUserLogIn"  class="lk-body-menu-link" @click="changeTab(0)">Профиль</span> 
                 <!-- </router-link> -->
                 <!-- <router-link v-if="userStatus" class="lk-body-menu-link" to="/personalarea/accounts"> -->
-                    <span v-if="userStatus" class="lk-body-menu-link" @click="changeTab(1)">Мои доступы</span>
+                    <span v-if="isUserLogIn" class="lk-body-menu-link" @click="changeTab(1)">Мои доступы</span>
                 <!-- </router-link> -->
                 <!-- <router-link  to="/personalarea/subscriptions"> -->
-                    <span v-if="userStatus" class="lk-body-menu-link" @click="changeTab(2)">Подписки</span>
+                    <span v-if="isUserLogIn" class="lk-body-menu-link" @click="changeTab(2)">Подписки</span>
                 <!-- </router-link> -->
                 <!-- <router-link to="/personalarea/emoney"> -->
-                    <span v-if="userStatus" class="lk-body-menu-link" @click="changeTab(3)">Безнал</span>
+                    <span v-if="isUserLogIn" class="lk-body-menu-link" @click="changeTab(3)">Безнал</span>
                 <!-- </router-link> -->
                 <!-- <router-linto="/personalarea/journal"> -->
-                    <span v-if="userStatus" class="lk-body-menu-link" @click="changeTab(4)">Журнал</span>
+                    <span v-if="isUserLogIn" class="lk-body-menu-link" @click="changeTab(4)">Журнал</span>
                 <!-- </router-link> -->
                 <!-- <router-link to="/personalarea/authorization"> -->
-                    <span v-if="!userStatus" class="lk-body-menu-link" @click="changeTab(5)">Аавторизация</span>
+                    <span v-if="!isUserLogIn" class="lk-body-menu-link" @click="changeTab(5)">Аавторизация</span>
                 <!-- </router-link> -->
                 <!-- <router-link to="/personalarea/registration"> -->
-                    <span v-if="!userStatus" class="lk-body-menu-link" @click="changeTab(6)">Регистрация</span>
+                    <span v-if="!isUserLogIn" class="lk-body-menu-link" @click="changeTab(6)">Регистрация</span>
                 <!-- </router-link> -->
-                <button v-if="userStatus" class="lk-body-menu-link" @click="logOut">Выход</button>
+                <button v-if="isUserLogIn" class="lk-body-menu-link" @click="logOut">Выход</button>
 
             </div>  
             <div class="lk-body-main">
                 <div class="lk-body-main-wrap">
-                    <div class="lk-body-main-left" v-if="userStatus">
+                    <div class="lk-body-main-left" v-if="isUserLogIn">
                         <!-- Инфо о пользователе -->
                         <user-info></user-info>
                     </div>
-                    <div :class="{'lk-body-main-right': tabSize, 'lk-body-main-right-small': !tabSize}">
-                        <router-view @tryAuthorization="tryAuthorization"></router-view>
+                    <div :class="{'lk-body-main-right': isUserLogIn, 'lk-body-main-right-small': !isUserLogIn}">
+                        <router-view ></router-view>
                     </div>
                 </div>
                 
@@ -62,14 +62,18 @@ import UserInfo from './UserInfo'
         },
         components: {
             UserInfo,
+
         },
         computed: {
-            userStatus() {
-                return this.$store.state.user.status
+            user() {
+                return null
+            },
+             isUserLogIn() {
+                return false
             }
         },
         created() {
-            if (this.$store.state.user.status) {
+            if (this.isUserLogIn) {
                 this.changeTab(1)
             } else {
                 this.changeTab(5)
@@ -120,14 +124,9 @@ import UserInfo from './UserInfo'
                 this.currentTab = index
 
             },
-            tryAuthorization() {
-                this.changeTab(1)
-                this.$store.state.user.status = true
-                this.$router.push("/personalarea/profile")
-            },
-            logOut() {
+            async logOut() {
+
                 this.$router.push("/")
-                this.$store.state.user.status = false
             }
         },
     }
@@ -145,11 +144,11 @@ import UserInfo from './UserInfo'
     }
     *::-webkit-scrollbar-thumb {
         border-radius: 10px;
-        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        box-shadow: inset 0 0 6px rgba(0,0,0,.3);
         background-color: #555;
     }
     *::-webkit-scrollbar-track {
-        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
         border-radius: 10px;
         background-color: #F5F5F5;
     }

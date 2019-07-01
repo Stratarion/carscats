@@ -8,6 +8,7 @@ import Emoney from '@/components/PersonalArea/Emoney';
 import Journal from '@/components/PersonalArea/journal';
 import Authorization from '@/components/PersonalArea/Authorization';
 import Registration from '@/components/PersonalArea/Registration';
+import AuthGuard from './auth-guard.js';
 
 
 
@@ -30,37 +31,44 @@ export default new VueRouter ({
                 {
                     name: 'Profile',
                     path: '/personalarea/profile',
-                    component: Profile
+                    component: Profile,
+                    beforeEnter: AuthGuard
                 },
                 {
                     name: 'Accounts',
                     path: '/personalarea/accounts',
-                    component: Accounts
+                    component: Accounts,
+                    beforeEnter: AuthGuard
                 },
                 {
                     name: 'Subscriptions',
                     path: '/personalarea/subscriptions',
-                    component: Subscriptions
+                    component: Subscriptions,
+                    beforeEnter: AuthGuard
                 },
                 {
                     name: 'Emoney',
                     path: '/personalarea/emoney',
-                    component: Emoney
+                    component: Emoney,
+                    beforeEnter: AuthGuard
                 },
                 {
                     name: 'Journal',
                     path: '/personalarea/journal',
-                    component: Journal
+                    component: Journal,
+                    beforeEnter: AuthGuard
                 },
                 {
                     name: 'Authorization',
                     path: '/personalarea/authorization',
-                    component: Authorization
+                    component: Authorization,
+                    // beforeEnter: AuthGuard
                 },
                 {
                     name: 'Registration',
                     path: '/personalarea/registration',
-                    component: Registration
+                    component: Registration,
+                    // beforeEnter: AuthGuard
                 }
                 
             ]

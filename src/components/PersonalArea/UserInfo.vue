@@ -5,7 +5,7 @@
                 <img src="../../img/user-with-shirt-and-tie_icon-icons.com_68276.svg" alt="">
             </div>
             <div class="top-info">
-                <h3 class="top-info-name">{{ userName }} </h3>
+                <h3 class="top-info-name"> userName </h3>
                 <h4 class="top-info-company">Компания: нет</h4>
                 <h4 class="top-info-id">ID: 67078</h4>
             </div>
@@ -38,9 +38,6 @@
 <script>
     export default {
         computed: {
-            userName() {
-                return this.$store.state.user.name
-            }
         }
     }
 </script>

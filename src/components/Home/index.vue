@@ -265,7 +265,7 @@ import modalTemplate from '@/components/functional/modalWIndow.vue'
                 this.activeLink = number
             },
             lkLink() {
-                if (this.$store.state.user.status) {
+                if (this.isUserLogIn) {
                     return '/personalarea/accounts'
                 } else {
                     return '/personalarea/authorization'
@@ -274,6 +274,11 @@ import modalTemplate from '@/components/functional/modalWIndow.vue'
         },
         components: {
             modalTemplate
+        },
+        computed: {
+            isUserLogIn() {
+                return this.$store.getters.isUserLogIn
+            }
         },
         mounted() {
             var firstSection = document.getElementById('first');

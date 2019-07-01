@@ -22,6 +22,10 @@
                 <div class="main-btns-apply">Применить</div>
                 <div class="main-btns-cancel">Сбросить</div>
             </div>
+
+           
+            
+
         </div>
 
     </div>
@@ -29,6 +33,7 @@
 
 <script>
 import Datepicker from 'vuejs-datepicker';
+
 import {ru} from 'vuejs-datepicker/dist/locale'
     export default {
         components: {
@@ -38,8 +43,10 @@ import {ru} from 'vuejs-datepicker/dist/locale'
             return {
                 ru: ru,
                 dateFrom: new Date,
-                dateTo: new Date
+                dateTo: new Date,
             }
+        },
+        methods: {  
         }
         
     }

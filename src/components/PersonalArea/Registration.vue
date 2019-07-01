@@ -12,38 +12,10 @@
 
                     <input v-model="info.email" type="text" class="main-row-input" @blur="$v.email.$touch()">
                 </div>
-                <div class="main-row">
-                    <label class="main-row-head">Телефон:</label>
-                    <input v-model="info.phone" type="text" class="main-row-input">
-                </div>
-                <div class="main-row">
-                    <label class="main-row-head">ФИО:</label>
-                    <input v-model="info.name" type="text" class="main-row-input">
-                </div>
-                <div class="main-row">
-                    <label class="main-row-head">Название организации (необязательно):</label>
-                    <input v-model="info.orgname" type="text" class="main-row-input">
-                </div>
-                <div class="main-row">
-                    <label class="main-row-head">Страна:</label>
-                    <select v-model="info.contry" class="main-row-input">
-                        <option v-for="contry in contrys" :key="contry.id" v-bind:value="contry.name">
-                            {{ contry.name }}
-                        </option>
-                    </select>
-                </div>
-                <div class="main-row">
-                    <label class="main-row-head">Официальный дилер:</label>
-                    <select v-model="diller" class="main-row-input">
-                        <option>Да</option>
-                        <option>Нет</option>
-
-                    </select>
-                </div>
                 
                 <div class="main-row">
                     <label class="main-row-head">Пароль:</label>
-                    <input type="text" class="main-row-input">
+                    <input type="text" class="main-row-input" v-model="info.password">
                 </div>
                 
                 <div class="main-row">
@@ -51,7 +23,7 @@
                     <input type="text" class="main-row-input">
                 </div>
                 <div class="main-bot">
-                    <div class="main-bot-btn" style="background: #34bfa3;color: #fff;">Регистрация</div>
+                    <button class="main-bot-btn" style="background: #34bfa3;color: #fff;" @click="createUser()">Регистрация</button>
                 </div>
             </form>
         </div>
@@ -87,26 +59,21 @@ import { required, email } from 'vuelidate/lib/validators'
                 ],
                 info: {
                     email: '',
-                    phone: '',
-                    name: '',
-                    orgname: '',
-                    contry: '',
-                    diller: false,
                     password: ''
                 }
             }
         },
-        watch: {
-            diller() {
-                if (this.diller == 'Нет') {
-                    this.info.diller = false
-                } else {
-                    this.info.diller = true
-                }
+        methods: {
+            createUser() { 
+                let newUser = {
+                    email: this.info.email,
+                    password: this.info.password
+                };
+                alert(newUser)
+
             }
         },
         computed: {
-           
         },
         validations: {
             email: {
