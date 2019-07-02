@@ -18,22 +18,13 @@
                 <div class="main-bot-btn" style="background: #34bfa3;color: #fff;" @click="tryAuthorization">Вход</div>
                 <div class="main-bot-btn">Восстановить пароль</div>
             </div>
-             <input style="border: 1px solid red;" v-model="headerTest" type="text">
-            <textarea style="border: 1px solid red;" v-model="descriptionTest" name="" id="" cols="30" rows="10"></textarea>
-            <button @click="sendTest">Test</button>
 
-            <div v-for="item in tests" :key="item.id">
-                <h4>{{ item.title }}</h4>
-                <p>{{ item.description }}</p>
-            </div>
+            
         </div>
     </div>
 </template>
 
 <script>
-import TarifsService from '@/services/TarifsService';
-
-// import PostsService from '@/services/PostsService'
 
 
     export default {
@@ -42,10 +33,6 @@ import TarifsService from '@/services/TarifsService';
                 login: '',
                 password: '',
                 posts: [],
-                
-                headerTest: '',
-                descriptionTest: '',
-                tests: []
             }
         },
         methods: {
@@ -57,39 +44,15 @@ import TarifsService from '@/services/TarifsService';
                 alert(user)
                 this.getPosts ()
             },
-            async getTests() {
-                const response = await TarifsService.fetchTarifs() 
-                this.tests = response.data.tarifs
-            },
-            
-            async sendTest() {
-                await TarifsService.addTarif({
-                    title: this.headerTest,
-                    description: this.descriptionTest
-                }).then((res) => {
-                    // console.log(res)
-                    if (res.status === 200) {
-                        this.headerTest = ''
-                        this.descriptionTest = ''
-                    } else {
-                        alert('Что-то пошло не так...', res)
-                    }
-                    
-                })
-                this.getTests()
-            } 
-            // async getPosts () {
-            //     const response = await PostsService.fetchPosts()
-            //     this.posts = response.data.posts
-            // }
         },
         mounted() {
-            this.getTests()
         }
     }
 </script>
 
 <style scoped>
+
+
     .tab {
         width: 100%;
         border-bottom: 1px solid #ebedf2;

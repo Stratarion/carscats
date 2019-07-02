@@ -9,37 +9,24 @@
 
         <section class="lk-body">
             <div class="lk-body-menu">
-                <!-- <router-link to="/personalarea/profile"> -->
-                    <span v-if="isUserLogIn"  class="lk-body-menu-link" @click="changeTab(0)">Профиль</span> 
-                <!-- </router-link> -->
-                <!-- <router-link v-if="userStatus" class="lk-body-menu-link" to="/personalarea/accounts"> -->
-                    <span v-if="isUserLogIn" class="lk-body-menu-link" @click="changeTab(1)">Мои доступы</span>
-                <!-- </router-link> -->
-                <!-- <router-link  to="/personalarea/subscriptions"> -->
-                    <span v-if="isUserLogIn" class="lk-body-menu-link" @click="changeTab(2)">Подписки</span>
-                <!-- </router-link> -->
-                <!-- <router-link to="/personalarea/emoney"> -->
-                    <span v-if="isUserLogIn" class="lk-body-menu-link" @click="changeTab(3)">Безнал</span>
-                <!-- </router-link> -->
-                <!-- <router-linto="/personalarea/journal"> -->
-                    <span v-if="isUserLogIn" class="lk-body-menu-link" @click="changeTab(4)">Журнал</span>
-                <!-- </router-link> -->
-                <!-- <router-link to="/personalarea/authorization"> -->
-                    <span v-if="!isUserLogIn" class="lk-body-menu-link" @click="changeTab(5)">Аавторизация</span>
-                <!-- </router-link> -->
-                <!-- <router-link to="/personalarea/registration"> -->
-                    <span v-if="!isUserLogIn" class="lk-body-menu-link" @click="changeTab(6)">Регистрация</span>
-                <!-- </router-link> -->
+                <span v-if="isUserLogIn"  class="lk-body-menu-link" @click="changeTab(0)">Профиль</span> 
+                <span v-if="isUserLogIn" class="lk-body-menu-link" @click="changeTab(1)">Мои доступы</span>
+                <span v-if="isUserLogIn" class="lk-body-menu-link" @click="changeTab(2)">Подписки</span>
+                <span v-if="isUserLogIn" class="lk-body-menu-link" @click="changeTab(3)">Безнал</span>
+                <span v-if="isUserLogIn" class="lk-body-menu-link" @click="changeTab(4)">Журнал</span>
+                <span v-if="!isUserLogIn" class="lk-body-menu-link" @click="changeTab(5)">Редактор тарифов</span>
+                <span v-if="!isUserLogIn" class="lk-body-menu-link" @click="changeTab(6)">Аавторизация</span>
+                <span v-if="!isUserLogIn" class="lk-body-menu-link" @click="changeTab(7)">Регистрация</span>
                 <button v-if="isUserLogIn" class="lk-body-menu-link" @click="logOut">Выход</button>
-
+                {{ currentTab }}
             </div>  
             <div class="lk-body-main">
                 <div class="lk-body-main-wrap">
-                    <div class="lk-body-main-left" v-if="isUserLogIn">
+                    <div class="lk-body-main-left" v-if="tabSize">
                         <!-- Инфо о пользователе -->
                         <user-info></user-info>
                     </div>
-                    <div :class="{'lk-body-main-right': isUserLogIn, 'lk-body-main-right-small': !isUserLogIn}">
+                    <div :class="{'lk-body-main-right': tabSize, 'lk-body-main-right-small': !tabSize}">
                         <router-view ></router-view>
                     </div>
                 </div>
@@ -76,16 +63,12 @@ import UserInfo from './UserInfo'
             if (this.isUserLogIn) {
                 this.changeTab(1)
             } else {
-                this.changeTab(5)
+                this.changeTab(6)
             }
         },
         watch: {
             currentTab() {
-                if (this.currentTab < 5) {
-                    this.tabSize = true
-                } else {
-                    this.tabSize = false
-                }
+                this.changeMainSize()
 
                 switch(this.currentTab) {
                     case 0: {
@@ -109,10 +92,14 @@ import UserInfo from './UserInfo'
                         break
                     }
                     case 5: {
-                        this.$router.push("/personalarea/authorization")
+                        this.$router.push("/personalarea/tarifseditor")
                         break
                     }
                     case 6: {
+                        this.$router.push("/personalarea/authorization")
+                        break
+                    }
+                    case 7: {
                         this.$router.push("/personalarea/registration")
                         break
                     }
@@ -120,9 +107,17 @@ import UserInfo from './UserInfo'
             }
         },
         methods: {
+            changeMainSize() {
+                if (this.currentTab < 6) {
+                    this.tabSize = true
+                    
+                } else {
+                    this.tabSize = false
+                }
+            },
             changeTab(index) {
                 this.currentTab = index
-
+                this.changeMainSize()
             },
             async logOut() {
 

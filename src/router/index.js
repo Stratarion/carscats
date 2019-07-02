@@ -8,6 +8,8 @@ import Emoney from '@/components/PersonalArea/Emoney';
 import Journal from '@/components/PersonalArea/journal';
 import Authorization from '@/components/PersonalArea/Authorization';
 import Registration from '@/components/PersonalArea/Registration';
+import TarifsEditor from '@/components/PersonalArea/AdminPanel/tarifsEditor';
+
 import AuthGuard from './auth-guard.js';
 
 
@@ -68,6 +70,12 @@ export default new VueRouter ({
                     name: 'Registration',
                     path: '/personalarea/registration',
                     component: Registration,
+                    // beforeEnter: AuthGuard
+                },
+                {
+                    name: 'TarifsEditor',
+                    path: '/personalarea/tarifseditor',
+                    component: TarifsEditor,
                     // beforeEnter: AuthGuard
                 }
                 
