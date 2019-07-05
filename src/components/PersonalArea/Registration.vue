@@ -10,12 +10,12 @@
                 <div class="main-row">
                     <label class="main-row-head">Электронная почта:</label>
 
-                    <input v-model="info.email" type="text" class="main-row-input" @blur="$v.email.$touch()">
+                    <input v-model="email" type="text" class="main-row-input" @blur="$v.email.$touch()">
                 </div>
                 
                 <div class="main-row">
                     <label class="main-row-head">Пароль:</label>
-                    <input type="text" class="main-row-input" v-model="info.password">
+                    <input type="text" class="main-row-input" v-model="password">
                 </div>
                 
                 <div class="main-row">
@@ -23,7 +23,7 @@
                     <input type="text" class="main-row-input">
                 </div>
                 <div class="main-bot">
-                    <button class="main-bot-btn" style="background: #34bfa3;color: #fff;" @click="createUser()">Регистрация</button>
+                    <button class="main-bot-btn" style="background: #34bfa3;color: #fff;" @click.stop.prevent="createUser">Регистрация</button>
                 </div>
             </form>
         </div>
@@ -32,7 +32,7 @@
 
 <script>
 
-
+import UserService from '@/services/UserService';
 import { required, email } from 'vuelidate/lib/validators'
 
     export default {
@@ -57,19 +57,24 @@ import { required, email } from 'vuelidate/lib/validators'
                         name: "Незнаю"
                     }
                 ],
-                info: {
-                    email: '',
-                    password: ''
-                }
+                first_name: 'test',
+                last_name: 'test',
+                email: 'test@mail.rr',
+                password: 'testtt',
+                phone: 'test',
+
             }
         },
         methods: {
-            createUser() { 
-                let newUser = {
-                    email: this.info.email,
-                    password: this.info.password
-                };
-                alert(newUser)
+            async createUser() { 
+                await UserService.registerUser({
+                    first_name: this.first_name,
+                    last_name: this.last_name,
+                    email: this.email,
+                    password: this.password,
+                    contry: this.contry,
+                    phone: this.phone,
+                })
 
             }
         },

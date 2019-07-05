@@ -9,16 +9,16 @@
 
         <section class="lk-body">
             <div class="lk-body-menu">
-                <span v-if="isUserLogIn"  class="lk-body-menu-link" @click="changeTab(0)">Профиль</span> 
-                <span v-if="isUserLogIn" class="lk-body-menu-link" @click="changeTab(1)">Мои доступы</span>
-                <span v-if="isUserLogIn" class="lk-body-menu-link" @click="changeTab(2)">Подписки</span>
-                <span v-if="isUserLogIn" class="lk-body-menu-link" @click="changeTab(3)">Безнал</span>
-                <span v-if="isUserLogIn" class="lk-body-menu-link" @click="changeTab(4)">Журнал</span>
-                <span v-if="!isUserLogIn" class="lk-body-menu-link" @click="changeTab(5)">Редактор тарифов</span>
-                <span v-if="!isUserLogIn" class="lk-body-menu-link" @click="changeTab(6)">Аавторизация</span>
-                <span v-if="!isUserLogIn" class="lk-body-menu-link" @click="changeTab(7)">Регистрация</span>
-                <button v-if="isUserLogIn" class="lk-body-menu-link" @click="logOut">Выход</button>
-                {{ currentTab }}
+                <span v-if="userStatus"  class="lk-body-menu-link" @click="changeTab(0)">Профиль</span> 
+                <span v-if="userStatus" class="lk-body-menu-link" @click="changeTab(1)">Мои доступы</span>
+                <span v-if="userStatus" class="lk-body-menu-link" @click="changeTab(2)">Подписки</span>
+                <span v-if="userStatus" class="lk-body-menu-link" @click="changeTab(3)">Безнал</span>
+                <span v-if="userStatus" class="lk-body-menu-link" @click="changeTab(4)">Журнал</span>
+                <span v-if="userStatus" class="lk-body-menu-link" @click="changeTab(5)">Редактор тарифов</span>
+                <span v-if="!userStatus" class="lk-body-menu-link" @click="changeTab(6)">Аавторизация</span>
+                <span v-if="!userStatus" class="lk-body-menu-link" @click="changeTab(7)">Регистрация</span>
+                <button v-if="userStatus" class="lk-body-menu-link" @click.stop="logOut">Выход</button>
+                {{ userStatus }}
             </div>  
             <div class="lk-body-main">
                 <div class="lk-body-main-wrap">
@@ -27,7 +27,7 @@
                         <user-info></user-info>
                     </div>
                     <div :class="{'lk-body-main-right': tabSize, 'lk-body-main-right-small': !tabSize}">
-                        <router-view ></router-view>
+                        <router-view @userLog="userLog" ></router-view>
                     </div>
                 </div>
                 
@@ -40,11 +40,15 @@
 <script>
 
 import UserInfo from './UserInfo'
+import jwtDecode from 'jwt-decode'
+
+
     export default {
         data() {
             return {
                 currentTab: 0,
-                tabSize: false
+                tabSize: false,
+                userStatus: false
             }
         },
         components: {
@@ -52,19 +56,25 @@ import UserInfo from './UserInfo'
 
         },
         computed: {
-            user() {
+            getUser() {
                 return null
             },
-             isUserLogIn() {
-                return false
+            isUserLogIn() {
+                return this.$store.user ? true : false
             }
         },
         created() {
-            if (this.isUserLogIn) {
-                this.changeTab(1)
-            } else {
-                this.changeTab(6)
+
+            const token = localStorage.usertoken
+            if (token) {
+                const decoded = jwtDecode(token)
+                this.$store.user = decoded
+                this.userLog()
             }
+            
+            if (!this.$store.user) {
+                this.changeTab(6)
+            } 
         },
         watch: {
             currentTab() {
@@ -107,6 +117,10 @@ import UserInfo from './UserInfo'
             }
         },
         methods: {
+            userLog() {
+                this.userStatus = true
+                this.changeTab(1)
+            },
             changeMainSize() {
                 if (this.currentTab < 6) {
                     this.tabSize = true
@@ -119,10 +133,13 @@ import UserInfo from './UserInfo'
                 this.currentTab = index
                 this.changeMainSize()
             },
-            async logOut() {
-
+            logOut() {
+                localStorage.removeItem('usertoken')
+                this.$store.user = null
+                this.userStatus = false
                 this.$router.push("/")
-            }
+            },
+
         },
     }
 </script>

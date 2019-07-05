@@ -6,9 +6,15 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        test: 'test'
+        test: 'test',
+        user
     },
     modules: {
         user,
+    },
+    getters: {
+        isUserLogIn() {
+            return this.user ? true : false
+        }
     }
 })

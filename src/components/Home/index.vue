@@ -277,7 +277,7 @@ import modalTemplate from '@/components/functional/modalWIndow.vue'
         },
         computed: {
             isUserLogIn() {
-                return this.$store.getters.isUserLogIn
+                return this.$store.user ? true : false
             }
         },
         mounted() {

@@ -66,7 +66,11 @@
 <script>
     export default {
         data() {
+           
             return {
+                first_name: this.$store.user.first_name,
+                last_name: this.$store.user.last_name,
+                email: this.$store.user.email,
                 diller: "Да",
                 contry_select: 'Выбирите страну',
                 contrys: [

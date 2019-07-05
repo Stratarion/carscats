@@ -5,9 +5,11 @@
                 <img src="../../img/user-with-shirt-and-tie_icon-icons.com_68276.svg" alt="">
             </div>
             <div class="top-info">
-                <h3 class="top-info-name"> userName </h3>
+                <h3 class="top-info-name"> {{ first_name}} + {{ last_name }} </h3>
                 <h4 class="top-info-company">Компания: нет</h4>
-                <h4 class="top-info-id">ID: 67078</h4>
+                <h4 class="top-info-id">ID: {{ id }}</h4>
+                {{ role }} 
+
             </div>
 
         </div>
@@ -24,7 +26,7 @@
                 <div class="tariffs-item-price">1000 руб.</div>
             </div>
             <div class="tariffs-all">
-                <div class="tariffs-all-btn">
+                <div class="tariffs-all-btn" @click="test">
                     <font-awesome-icon :icon="['fas', 'angle-double-down']" />
                     Показать все тарифы
                 </div>
@@ -37,7 +39,18 @@
 
 <script>
     export default {
+        data() {
+            return {
+                
+                first_name: this.$store.user.first_name,
+                last_name: this.$store.user.last_name,
+                email: this.$store.user.email,
+                role: this.$store.user.role,
+                id: this.$store.user._id
+            }
+        },
         computed: {
+
         }
     }
 </script>

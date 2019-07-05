@@ -10,7 +10,7 @@ import Authorization from '@/components/PersonalArea/Authorization';
 import Registration from '@/components/PersonalArea/Registration';
 import TarifsEditor from '@/components/PersonalArea/AdminPanel/tarifsEditor';
 
-import AuthGuard from './auth-guard.js';
+// import AuthGuard from './auth-guard.js';
 
 
 
@@ -34,31 +34,31 @@ export default new VueRouter ({
                     name: 'Profile',
                     path: '/personalarea/profile',
                     component: Profile,
-                    beforeEnter: AuthGuard
+                    // beforeEnter: AuthGuard
                 },
                 {
                     name: 'Accounts',
                     path: '/personalarea/accounts',
                     component: Accounts,
-                    beforeEnter: AuthGuard
+                    // beforeEnter: AuthGuard
                 },
                 {
                     name: 'Subscriptions',
                     path: '/personalarea/subscriptions',
                     component: Subscriptions,
-                    beforeEnter: AuthGuard
+                    // beforeEnter: AuthGuard
                 },
                 {
                     name: 'Emoney',
                     path: '/personalarea/emoney',
                     component: Emoney,
-                    beforeEnter: AuthGuard
+                    // beforeEnter: AuthGuard
                 },
                 {
                     name: 'Journal',
                     path: '/personalarea/journal',
                     component: Journal,
-                    beforeEnter: AuthGuard
+                    // beforeEnter: AuthGuard
                 },
                 {
                     name: 'Authorization',

@@ -25,28 +25,45 @@
 </template>
 
 <script>
-
-
+import UserService from '@/services/UserService';
+import jwtDecode from 'jwt-decode'
     export default {
         data() {
             return {
-                login: '',
-                password: '',
+                login: 'test@mail.rr',
+                password: 'testtt',
                 posts: [],
             }
         },
         methods: {
-            tryAuthorization() {
-                let user = {
+
+            // авторизация
+            async tryAuthorization() {
+                const res = await UserService.authUser({
                     email: this.login,
                     password: this.password
-                }
-                alert(user)
-                this.getPosts ()
+                })
+                localStorage.setItem('usertoken', res.data)
+                this.logInApp()
+                this.clearRows()
+                // this.$router.push("/personalarea/accounts")
             },
+
+            // очистка полей
+            clearRows() {
+                this.email = ''
+                this.password = ''
+            },
+
+            // авторизация пользователя в приложении (на фронте)
+            logInApp() {
+                const token = localStorage.usertoken
+                const decoded = jwtDecode(token)
+                this.$store.user = decoded
+                this.$emit('userLog')
+
+            }
         },
-        mounted() {
-        }
     }
 </script>
 
