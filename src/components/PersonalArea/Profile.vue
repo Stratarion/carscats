@@ -56,7 +56,7 @@
                 <input type="text" class="main-row-input">
             </div>
             <div class="main-bot">
-                <div class="main-bot-btn" style="background: #34bfa3;color: #fff;">Сохранить</div>
+                <div class="main-bot-btn" style="background: #34bfa3;color: #fff;" @click="updateUser">Сохранить</div>
                 <div class="main-bot-btn">Сбросить</div>
             </div>
         </div>
@@ -64,6 +64,8 @@
 </template>
 
 <script>
+import UserService from '@/services/UserService';
+
     export default {
         data() {
            
@@ -90,6 +92,14 @@
                         name: "Незнаю"
                     }
                 ]
+            }
+        },
+        methods: {
+            async updateUser() {
+                await UserService.update({
+                    id: this.$store.user._id,
+                    phone: 1111
+                })
             }
         }
     }

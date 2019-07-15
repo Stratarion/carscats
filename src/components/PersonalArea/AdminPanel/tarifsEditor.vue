@@ -7,8 +7,11 @@
                 <input v-model="headertarif" type="text">
                 <h4>Описание тарифа</h4>
                 <textarea v-model="descriptiontarif" ></textarea>
-                <h4>Продолжительность (время действия при 1 покупке, в месяцах)</h4>
+                <h4>Продолжительность (время действия при 1 покупке, в днях)</h4>
                 <input v-model="durationtarif" type="number">
+                <h4>Цена</h4>
+                <input v-model="pricetarif" type="number">
+
                 <button @click="sendtarif">Send</button>
             </div>
         </div>
@@ -20,6 +23,8 @@
                     <h4>{{ item.title }}</h4>
                     <p>{{ item.description }}</p>
                     <p>Продолжительность: {{ item.duration }} </p>
+                    <p>Стоимость: {{ item.price }} </p>
+
                 </div>
                 <div class="tarif-btns">
                     <div class="edit">Редактировать</div>
@@ -44,7 +49,8 @@ import TarifsService from '@/services/TarifsService';
                 headertarif: '',
                 descriptiontarif: '',
                 tarifs: [],
-                durationtarif: 1
+                durationtarif: 1,
+                pricetarif: 1200
             }
         },
         methods: {
@@ -67,13 +73,15 @@ import TarifsService from '@/services/TarifsService';
                 await TarifsService.addTarif({
                     title: this.headertarif,
                     description: this.descriptiontarif,
-                    duration: this.durationtarif
+                    duration: this.durationtarif,
+                    price: this.pricetarif
                 }).then((res) => {
                     // console.log(res)
                     if (res.status === 200) {
                         this.headertarif = ''
                         this.descriptiontarif = ''
                         this.durationtarif = 1
+                        this.pricetarif = 1200
 
                     } else {
                         alert('Что-то пошло не так...', res)
@@ -137,7 +145,6 @@ h3 {
     flex-direction: column;
     align-items: flex-start;
     position: relative;
-    height: 300px;
     padding: 0 30px 30px;
     z-index: 10;
 }

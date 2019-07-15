@@ -1,11 +1,11 @@
 <template>
     <div>
         <div class="top">
-            <div class="top-avatar">
+            <!-- <div class="top-avatar">
                 <img src="../../img/user-with-shirt-and-tie_icon-icons.com_68276.svg" alt="">
-            </div>
+            </div> -->
             <div class="top-info">
-                <h3 class="top-info-name"> {{ first_name}} + {{ last_name }} </h3>
+                <h3 class="top-info-name"> {{ first_name}} {{ last_name }} </h3>
                 <h4 class="top-info-company">Компания: нет</h4>
                 <h4 class="top-info-id">ID: {{ id }}</h4>
                 {{ role }} 
@@ -51,6 +51,11 @@
         },
         computed: {
 
+        },
+        methods: {
+            test() {
+
+            }
         }
     }
 </script>
@@ -59,7 +64,7 @@
 .top {
     display: flex;
     border-bottom: 1px solid #ebedf2;
-    padding: 20px 0 10px;
+    padding: 20px 5px 10px;
 
 }
 .top-avatar {

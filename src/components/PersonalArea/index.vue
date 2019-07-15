@@ -9,16 +9,17 @@
 
         <section class="lk-body">
             <div class="lk-body-menu">
-                <span v-if="userStatus"  class="lk-body-menu-link" @click="changeTab(0)">Профиль</span> 
-                <span v-if="userStatus" class="lk-body-menu-link" @click="changeTab(1)">Мои доступы</span>
-                <span v-if="userStatus" class="lk-body-menu-link" @click="changeTab(2)">Подписки</span>
-                <span v-if="userStatus" class="lk-body-menu-link" @click="changeTab(3)">Безнал</span>
-                <span v-if="userStatus" class="lk-body-menu-link" @click="changeTab(4)">Журнал</span>
-                <span v-if="userStatus" class="lk-body-menu-link" @click="changeTab(5)">Редактор тарифов</span>
-                <span v-if="!userStatus" class="lk-body-menu-link" @click="changeTab(6)">Аавторизация</span>
-                <span v-if="!userStatus" class="lk-body-menu-link" @click="changeTab(7)">Регистрация</span>
+                <span v-if="userStatus && !admin"  class="lk-body-menu-link" @click="changeTab(0)">Профиль</span> 
+                <span v-if="userStatus && !admin" class="lk-body-menu-link" @click="changeTab(1)">Мои доступы</span>
+                <!-- <span v-if="userStatus && !admin" class="lk-body-menu-link" @click="changeTab(2)">Подписки</span> -->
+                <span v-if="userStatus && !admin" class="lk-body-menu-link" @click="changeTab(3)">Тарифы</span>
+                <!-- <span v-if="userStatus && !admin" class="lk-body-menu-link" @click="changeTab(4)">Журнал</span> -->
+                <span v-if="admin" class="lk-body-menu-link" @click="changeTab(5)">Редактор тарифов</span>
+                <span v-if="admin" class="lk-body-menu-link" @click="changeTab(6)">E-mail рассылка</span>
+                <span v-if="admin" class="lk-body-menu-link" @click="changeTab(7)">Пользователи</span>
+                <span v-if="!userStatus" class="lk-body-menu-link" @click="changeTab(8)">Аавторизация</span>
+                <span v-if="!userStatus" class="lk-body-menu-link" @click="changeTab(9)">Регистрация</span>
                 <button v-if="userStatus" class="lk-body-menu-link" @click.stop="logOut">Выход</button>
-                {{ userStatus }}
             </div>  
             <div class="lk-body-main">
                 <div class="lk-body-main-wrap">
@@ -48,7 +49,9 @@ import jwtDecode from 'jwt-decode'
             return {
                 currentTab: 0,
                 tabSize: false,
-                userStatus: false
+                userStatus: false,
+                user: {},
+                admin: false
             }
         },
         components: {
@@ -70,10 +73,15 @@ import jwtDecode from 'jwt-decode'
                 const decoded = jwtDecode(token)
                 this.$store.user = decoded
                 this.userLog()
+                this.user = decoded
+                if (this.user.role === 'admin') {
+                    this.admin = true
+                }
+                
             }
             
             if (!this.$store.user) {
-                this.changeTab(6)
+                this.changeTab(8)
             } 
         },
         watch: {
@@ -94,7 +102,7 @@ import jwtDecode from 'jwt-decode'
                         break
                     }
                     case 3: {
-                        this.$router.push("/personalarea/emoney")
+                        this.$router.push("/personalarea/tarifs")
                         break
                     }
                     case 4: {
@@ -106,10 +114,18 @@ import jwtDecode from 'jwt-decode'
                         break
                     }
                     case 6: {
-                        this.$router.push("/personalarea/authorization")
+                        this.$router.push("/personalarea/emailsender")
                         break
                     }
                     case 7: {
+                        this.$router.push("/personalarea/userslist")
+                        break
+                    }
+                    case 8: {
+                        this.$router.push("/personalarea/authorization")
+                        break
+                    }
+                    case 9: {
                         this.$router.push("/personalarea/registration")
                         break
                     }
@@ -119,10 +135,15 @@ import jwtDecode from 'jwt-decode'
         methods: {
             userLog() {
                 this.userStatus = true
-                this.changeTab(1)
+                if (this.$store.user.role === 'admin') {
+                    this.admin = true
+                    this.changeTab(7)
+                } else {
+                    this.changeTab(1)
+                }
             },
             changeMainSize() {
-                if (this.currentTab < 6) {
+                if (this.currentTab < 8) {
                     this.tabSize = true
                     
                 } else {

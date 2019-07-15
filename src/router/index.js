@@ -4,11 +4,15 @@ import PersonalArea from '@/components/PersonalArea';
 import Profile from '@/components/PersonalArea/Profile';
 import Accounts from '@/components/PersonalArea/Accounts';
 import Subscriptions from '@/components/PersonalArea/subscriptions';
-import Emoney from '@/components/PersonalArea/Emoney';
+import Tarifs from '@/components/PersonalArea/Tarifs';
 import Journal from '@/components/PersonalArea/journal';
 import Authorization from '@/components/PersonalArea/Authorization';
 import Registration from '@/components/PersonalArea/Registration';
 import TarifsEditor from '@/components/PersonalArea/AdminPanel/tarifsEditor';
+import EmailSender from '@/components/PersonalArea/AdminPanel/emailSend';
+import UsersList from '@/components/PersonalArea/AdminPanel/usersList';
+
+
 
 // import AuthGuard from './auth-guard.js';
 
@@ -49,9 +53,9 @@ export default new VueRouter ({
                     // beforeEnter: AuthGuard
                 },
                 {
-                    name: 'Emoney',
-                    path: '/personalarea/emoney',
-                    component: Emoney,
+                    name: 'Tarifs',
+                    path: '/personalarea/tarifs',
+                    component: Tarifs,
                     // beforeEnter: AuthGuard
                 },
                 {
@@ -76,6 +80,19 @@ export default new VueRouter ({
                     name: 'TarifsEditor',
                     path: '/personalarea/tarifseditor',
                     component: TarifsEditor,
+                    // beforeEnter: AuthGuard
+                },
+                {
+                    name: 'EmailSender',
+                    path: '/personalarea/emailsender',
+                    component: EmailSender,
+                    // beforeEnter: AuthGuard
+                },
+                
+                {
+                    name: 'UsersList',
+                    path: '/personalarea/userslist',
+                    component: UsersList,
                     // beforeEnter: AuthGuard
                 }
                 

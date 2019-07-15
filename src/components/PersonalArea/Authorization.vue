@@ -30,8 +30,8 @@ import jwtDecode from 'jwt-decode'
     export default {
         data() {
             return {
-                login: 'test@mail.rr',
-                password: 'testtt',
+                login: 'admin@main.ru',
+                password: 'carcatsadmin',
                 posts: [],
             }
         },

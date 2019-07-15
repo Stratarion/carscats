@@ -7,5 +7,11 @@ export default {
     },
     authUser (params) {
         return api().post('/login', params)
+    },
+    getUsers () {
+        return api().get('/users')
+    },
+    update(params) {
+        return api().put(`/users/${params.id}`, params)
     }
 }
