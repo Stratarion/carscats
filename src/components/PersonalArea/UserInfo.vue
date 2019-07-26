@@ -7,37 +7,34 @@
             <div class="top-info">
                 <h3 class="top-info-name"> {{ first_name}} {{ last_name }} </h3>
                 <h4 class="top-info-company">Компания: нет</h4>
-                <h4 class="top-info-id">ID: {{ id }}</h4>
-                {{ role }} 
+                <h4 class="top-info-id">Почта: {{ email }}</h4>
+                <h4 class="top-info-id">Телефон: {{ phone }}</h4>
 
             </div>
-
-        </div>
-        <div class="tariffs">
-            <h3>Персональный тариф</h3>
-            <div class="tariffs-item">
-                <font-awesome-icon :icon="['fas', 'cog']"  size="lg" :style="{'color': '#34bfa3'}"/>
-                <a href="">EPC (online):</a>
-                <div class="tariffs-item-price">1500 руб.</div>
+            <div class="top-tarif" v-if="startDate !== ''">
+                
+                <div>Последняя оплата: {{ startDate }}</div>
+                <div>Оплачено дней: {{ userAccess.duration }}</div>
+                <div>Оплачено до: {{ lastDate }} </div>
             </div>
-            <div class="tariffs-item">
-                <font-awesome-icon :icon="['fas', 'cog']"  size="lg" :style="{'color': '#34bfa3'}"/>
-                <a href="">VAG (online):</a>
-                <div class="tariffs-item-price">1000 руб.</div>
+            <div v-else-if="role === 'user'" class="top-tarif">
+                <div>Нет оплаченного доступа</div>
             </div>
-            <div class="tariffs-all">
-                <div class="tariffs-all-btn" @click="test">
-                    <font-awesome-icon :icon="['fas', 'angle-double-down']" />
-                    Показать все тарифы
-                </div>
+            <div v-else class="top-tarif">
+                <div>Админ панель</div>
             </div>
-
+            
         </div>
 
     </div>
 </template>
 
 <script>
+
+import AccessService from '@/services/AccessService'
+import moment from 'moment'
+// import { request } from 'http';
+
     export default {
         data() {
             return {
@@ -46,16 +43,38 @@
                 last_name: this.$store.user.last_name,
                 email: this.$store.user.email,
                 role: this.$store.user.role,
-                id: this.$store.user._id
+                id: this.$store.user._id,
+                phone: this.$store.user.phone,
+                startDate: '',
+                lastDate: '',
+                
+                userAccess: {}
             }
         },
         computed: {
-
         },
         methods: {
-            test() {
+            async getAccess() {
+                let data = {
+                    params: {
+                        email: this.$store.user.email
+                    }
+                }
+                await AccessService.userAccess(data)
+                    .then((res) => {
+                        this.userAccess = res.data.access[0]
+                        moment.locale('ru')
+                        this.startDate = moment(res.data.access[0].startFrom).format("DD MMM  YYYY")
+                        this.lastDate = moment(res.data.access[0].startFrom).add(res.data.access[0].duration, 'days').format("DD MMM  YYYY")
+                    })
+                
+                
 
             }
+        },
+        created() {
+            if (this.$store.user.role === 'user')
+            this.getAccess()
         }
     }
 </script>
@@ -63,7 +82,7 @@
 <style scoped>
 .top {
     display: flex;
-    border-bottom: 1px solid #ebedf2;
+    flex-direction: column;
     padding: 20px 5px 10px;
 
 }
@@ -84,6 +103,9 @@
     align-items: flex-start;
     justify-content: flex-start;
     padding: 10px 10px;
+    text-align: left;
+    border-bottom: 1px solid #ebedf2;
+
 }
 .top-info h4, .top-info h3{
     font-weight: normal;
@@ -92,6 +114,14 @@
 .top-info-name {
     text-align: left;
     font-weight: 500;
+}
+.top-tarif {
+    padding: 20px 10px;
+}
+
+.top-tarif > div {
+    margin-bottom: 10px;
+    text-align: left;
 }
 
 .tariffs {

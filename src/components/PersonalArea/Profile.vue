@@ -9,11 +9,15 @@
         <div class="main">
             <div class="main-row">
                 <label class="main-row-head">E-Mail:</label>
-                <input type="text" placeholder="Ваша почта" class="main-row-input">
+                <input type="text" placeholder="Ваша почта" class="main-row-input" v-model="email">
             </div>
             <div class="main-row">
                 <label class="main-row-head">Имя:</label>
-                <input type="text" placeholder="Ваше Имя" class="main-row-input">
+                <input type="text" placeholder="Ваше Имя" class="main-row-input" v-model="first_name">
+            </div>
+            <div class="main-row">
+                <label class="main-row-head">Фамилия:</label>
+                <input type="text" placeholder="Ваша фамилия" class="main-row-input" v-model="last_name">
             </div>
             <div class="main-row">
                 <label class="main-row-head">Страна:</label>
@@ -74,7 +78,7 @@ import UserService from '@/services/UserService';
                 last_name: this.$store.user.last_name,
                 email: this.$store.user.email,
                 diller: "Да",
-                contry_select: 'Выбирите страну',
+                contry_select: this.$store.user.contry,
                 contrys: [
                     {
                         name: "Россия"

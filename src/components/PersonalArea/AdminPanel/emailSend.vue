@@ -2,14 +2,14 @@
     <div>
         <div class="tab">
             <div class="tab-item">
-               e-mail
+               E-mail
             </div>
             
         </div>
 
         <div class="editor" id="editor">
             <h4>Тема рассылки</h4>
-            <input type="text">
+            <input type="text" v-model="theme">
             <h4>Текст рассылки</h4>
             <quill-editor v-model="content"
                             ref="myQuillEditor"
@@ -45,6 +45,7 @@ import admin from '@/services/admin';
         data () {
             return {
                 content: '',
+                theme: '',
                 editorOption: {
                     theme: 'snow'
                 },
@@ -64,7 +65,8 @@ import admin from '@/services/admin';
             async sendEmails() {
                 
                 await admin.sendEmails({
-                    mail: this.content
+                    mail: this.content,
+                    theme: this.theme
                 }).then((res) => {
                     if (res.status === 200) {
                         this.content = ''
@@ -74,6 +76,7 @@ import admin from '@/services/admin';
                     
                 })
                 this.content = ''
+                this.theme = ''
             }
         }
     }

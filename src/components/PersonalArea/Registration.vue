@@ -14,13 +14,51 @@
                 </div>
                 
                 <div class="main-row">
+                    <label class="main-row-head">Номер телефона</label>
+                    <input v-model="email" type="text" class="main-row-input" @blur="$v.email.$touch()">
+                </div>
+                <div class="main-row">
+                    <label class="main-row-head">Имя</label>
+                    <input v-model="email" type="text" class="main-row-input" @blur="$v.email.$touch()">
+                </div>
+                <div class="main-row">
+                    <label class="main-row-head">Фамилия:</label>
+                    <input v-model="email" type="text" class="main-row-input" @blur="$v.email.$touch()">
+                </div>
+                <div class="main-row">
+                    <label class="main-row-head">Фамилия:</label>
+                    <input v-model="email" type="text" class="main-row-input" @blur="$v.email.$touch()">
+                </div>
+                <div class="main-row">
+                    <label class="main-row-head">Организация (не обязательно):</label>
+                    <input v-model="email" type="text" class="main-row-input" @blur="$v.email.$touch()">
+                </div>
+                
+                <div class="main-row">
+                    <label class="main-row-head">Страна:</label>
+                    <select v-model="contry_select" class="main-row-input">
+                        <option v-for="contry in contrys" :key="contry.id" v-bind:value="contry.name">
+                            {{ contry.name }}
+                        </option>
+                    </select>
+                </div>
+                
+                <div class="main-row">
+                    <label class="main-row-head">Официальный дилер:</label>
+                    <select v-model="diller" class="main-row-input">
+                        <option>Да</option>
+                        <option>Нет</option>
+
+                    </select>
+                </div>
+                <div class="main-row">
                     <label class="main-row-head">Пароль:</label>
-                    <input type="text" class="main-row-input" v-model="password">
+                    <input type="password" class="main-row-input" v-model="password">
                 </div>
                 
                 <div class="main-row">
                     <label class="main-row-head">Повторите пароль:</label>
-                    <input type="text" class="main-row-input">
+                    <input type="password" class="main-row-input">
                 </div>
                 <div class="main-bot">
                     <button class="main-bot-btn" style="background: #34bfa3;color: #fff;" @click.stop.prevent="createUser">Регистрация</button>

@@ -2,7 +2,7 @@
     <div class="lk">
         <section class="top">
             <router-link tag="div" class="logo" to="/">
-                <img src="https://carscats.ru/bitrix/templates/new_lk/assets/media/img/logo/logo.png" alt="">
+                <img src="@/img/logo.gif" alt="">
             </router-link>
             <h2>Личный кабинет</h2>
         </section>
@@ -10,15 +10,16 @@
         <section class="lk-body">
             <div class="lk-body-menu">
                 <span v-if="userStatus && !admin"  class="lk-body-menu-link" @click="changeTab(0)">Профиль</span> 
-                <span v-if="userStatus && !admin" class="lk-body-menu-link" @click="changeTab(1)">Мои доступы</span>
-                <!-- <span v-if="userStatus && !admin" class="lk-body-menu-link" @click="changeTab(2)">Подписки</span> -->
+                <!-- <span v-if="userStatus && !admin" class="lk-body-menu-link" @click="changeTab(1)">Мои доступы</span> -->
+                <span v-if="userStatus" class="lk-body-menu-link" @click="changeTab(2)">Новости</span>
                 <span v-if="userStatus && !admin" class="lk-body-menu-link" @click="changeTab(3)">Тарифы</span>
                 <!-- <span v-if="userStatus && !admin" class="lk-body-menu-link" @click="changeTab(4)">Журнал</span> -->
                 <span v-if="admin" class="lk-body-menu-link" @click="changeTab(5)">Редактор тарифов</span>
-                <span v-if="admin" class="lk-body-menu-link" @click="changeTab(6)">E-mail рассылка</span>
-                <span v-if="admin" class="lk-body-menu-link" @click="changeTab(7)">Пользователи</span>
-                <span v-if="!userStatus" class="lk-body-menu-link" @click="changeTab(8)">Аавторизация</span>
-                <span v-if="!userStatus" class="lk-body-menu-link" @click="changeTab(9)">Регистрация</span>
+                <span v-if="admin" class="lk-body-menu-link" @click="changeTab(6)">Добавить новость</span>
+                <span v-if="admin" class="lk-body-menu-link" @click="changeTab(7)">E-mail рассылка</span>
+                <span v-if="admin" class="lk-body-menu-link" @click="changeTab(8)">Пользователи</span>
+                <span v-if="!userStatus" class="lk-body-menu-link" @click="changeTab(9)">Аавторизация</span>
+                <span v-if="!userStatus" class="lk-body-menu-link" @click="changeTab(10)">Регистрация</span>
                 <button v-if="userStatus" class="lk-body-menu-link" @click.stop="logOut">Выход</button>
             </div>  
             <div class="lk-body-main">
@@ -81,7 +82,7 @@ import jwtDecode from 'jwt-decode'
             }
             
             if (!this.$store.user) {
-                this.changeTab(8)
+                this.changeTab(9)
             } 
         },
         watch: {
@@ -98,7 +99,7 @@ import jwtDecode from 'jwt-decode'
                         break
                     }
                     case 2: {
-                        this.$router.push("/personalarea/subscriptions")
+                        this.$router.push("/personalarea/news")
                         break
                     }
                     case 3: {
@@ -113,19 +114,24 @@ import jwtDecode from 'jwt-decode'
                         this.$router.push("/personalarea/tarifseditor")
                         break
                     }
+                    
                     case 6: {
-                        this.$router.push("/personalarea/emailsender")
+                        this.$router.push("/personalarea/addnews")
                         break
                     }
                     case 7: {
-                        this.$router.push("/personalarea/userslist")
+                        this.$router.push("/personalarea/emailsender")
                         break
                     }
                     case 8: {
-                        this.$router.push("/personalarea/authorization")
+                        this.$router.push("/personalarea/userslist")
                         break
                     }
                     case 9: {
+                        this.$router.push("/personalarea/authorization")
+                        break
+                    }
+                    case 10: {
                         this.$router.push("/personalarea/registration")
                         break
                     }
@@ -137,13 +143,13 @@ import jwtDecode from 'jwt-decode'
                 this.userStatus = true
                 if (this.$store.user.role === 'admin') {
                     this.admin = true
-                    this.changeTab(7)
+                    this.changeTab(8)
                 } else {
-                    this.changeTab(1)
+                    this.changeTab(2)
                 }
             },
             changeMainSize() {
-                if (this.currentTab < 8) {
+                if (this.currentTab < 9) {
                     this.tabSize = true
                     
                 } else {
@@ -169,39 +175,63 @@ import jwtDecode from 'jwt-decode'
     * {
         color: #575962;
     }
+
     *::-webkit-scrollbar {
         width: 12px;
         background-color: #F5F5F5;
         border-radius: 10px;
 
     }
+
     *::-webkit-scrollbar-thumb {
         border-radius: 10px;
         box-shadow: inset 0 0 6px rgba(0,0,0,.3);
         background-color: #555;
     }
+
     *::-webkit-scrollbar-track {
         box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
         border-radius: 10px;
         background-color: #F5F5F5;
     }
+
     .lk {
-        background-image: url(https://carscats.ru/bitrix/templates/new_lk/assets/media/img/bg/8.jpg);
+        background-image: url(../../img/backgrounds/back12.jpg);
         background-repeat: repeat;
-        background-size: auto;
+
+        background-size: 300px;
         min-height: 100vh;
     }
+
     .top {
         display: flex;  
         justify-content: space-between;  
         align-items: center;
         color: #fff;
-        padding: 30px 50px;
+        padding: 30px 100px;
     }
+
+    .top h2 {
+        color: #000;
+    }
+
+    .top img {
+        /* box-shadow: 0 3px 6px #000; */
+        filter: drop-shadow(0 0px 5px rgba(0, 0, 0, 0.397));
+        width: 440px;
+        position: absolute;
+
+        top: 10px;
+
+    }
+
     .lk-body {
         width: 90%;
-        margin: 0 auto;
+        margin: 20px auto 0;
+        border: 1px solid black;
+        border-radius: 10px;
     }
+
     .lk-body-menu {
         background: #fff;
         display: flex;
@@ -210,6 +240,7 @@ import jwtDecode from 'jwt-decode'
         border-top-right-radius: 10px;
         border-top-left-radius: 10px;
     }
+
     .lk-body-menu-link {
         height: 50px;
         display: flex;
@@ -224,38 +255,47 @@ import jwtDecode from 'jwt-decode'
         user-select: none;
         font-size: 16px;
     }
+
     .lk-body-menu-link:hover {
         background: #eaeaea !important;
     }
+
     .lk-body-main {
         background-color: #ebedf2;
         border-bottom-right-radius: 10px;
         border-bottom-left-radius: 10px;
         padding: 5px 0 0px 0;
     }
+
     .lk-body-main-wrap {
         display: flex;
         justify-content: center;
         align-items: flex-start;
         flex-wrap: wrap;
-        height: 70vh;
+        height: 75vh;
+        min-height: 450px;
         padding: 30px 0 30px 10px ;
         overflow: auto;
     }
+
     .lk-body-main-left, .lk-body-main-right, .lk-body-main-right-small {
         background: #fff;
         margin: 0 20px;
         min-width: 300px;
     }
+
     .lk-body-main-left {
         width: 20%;
         padding-bottom: 30px;
     }
+
     .lk-body-main-right {
         width: 70%;
         padding-bottom: 30px;
     }
+
     .lk-body-main-right-small {
         width: 500px;
     }
+
 </style>

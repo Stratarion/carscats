@@ -35,7 +35,7 @@
                 <div class="table-item table-item-name">{{ user.first_name + ' ' + user.last_name }}</div>
                 <div class="table-item table-item-email">{{ user.email }}</div>
                 <div class="table-item table-item-phone">{{ user.phone }}</div>
-                <div class="table-item table-item-date">Дата регистрации</div>
+                <div class="table-item table-item-date">{{  time(user.createdAt) }} </div>
                 <div class="table-item table-item-role">{{ user.role }}</div>
             </div>
 
@@ -45,11 +45,20 @@
 
 <script>
 import UserService from '@/services/UserService';
+import moment from 'moment'
+
 
     export default {
         data() {
             return {
-                usersList: []
+                usersList: [],
+                startFrom: ''
+            }
+        },
+        methods: {
+            time(data) {
+                moment.locale('ru')
+                return moment(data).format("DD MMM  YYYY")
             }
         },
         async mounted() {

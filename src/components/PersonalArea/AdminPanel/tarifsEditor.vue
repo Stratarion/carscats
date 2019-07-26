@@ -1,6 +1,10 @@
 <template>
     <div>
-        <h3>Добавить новый тариф</h3>
+        <div class="tab">
+            <div class="tab-item">
+               Добавить новый тариф
+            </div>
+        </div>
         <div class="wrap add-new">
             <div class="add-new-tarif">
                 <h4>Название тарифа</h4>
@@ -101,7 +105,24 @@ import TarifsService from '@/services/TarifsService';
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+
+.tab {
+    width: 100%;
+    border-bottom: 1px solid #ebedf2;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 50px;
+
+    &-item {
+        padding: 20px 10px;
+        border-bottom: 1px solid #22456c;
+        margin-bottom: -1px;
+        margin-left: 30px;
+        color: #22456c;
+    }
+
+}
 h3 {
     margin: 30px 0;
 }

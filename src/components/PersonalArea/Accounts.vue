@@ -35,47 +35,33 @@
                 <div class="table-item table-item-subscrib">Оформлена подписка</div>
 
             </div>
-            <div class="table-row">
-                <div class="table-item table-item-check-box"></div>
-                <div class="table-item table-item-service">Услуга</div>
-                <div class="table-item table-item-name">Имя ползователя</div>
-                <div class="table-item table-item-password">Пароль</div>
-                <div class="table-item table-item-date">Активен до</div>
-                <div class="table-item table-item-status">Статус</div>
-                <div class="table-item table-item-subscrib">Оформлена подписка</div>
 
-            </div>
-            <div class="table-row">
-                <div class="table-item table-item-check-box"></div>
-                <div class="table-item table-item-service">Услуга</div>
-                <div class="table-item table-item-name">Имя ползователя</div>
-                <div class="table-item table-item-password">Пароль</div>
-                <div class="table-item table-item-date">Активен до</div>
-                <div class="table-item table-item-status">Статус</div>
-                <div class="table-item table-item-subscrib">Оформлена подписка</div>
 
-            </div>
-            <div class="table-row">
-                <div class="table-item table-item-check-box"></div>
-                <div class="table-item table-item-service">Услуга</div>
-                <div class="table-item table-item-name">Имя ползователя</div>
-                <div class="table-item table-item-password">Пароль</div>
-                <div class="table-item table-item-date">Активен до</div>
-                <div class="table-item table-item-status">Статус</div>
-                <div class="table-item table-item-subscrib">Оформлена подписка</div>
-
-            </div>
 
         </div>
     </div>
 </template>
 
 <script>
+
+import AccessService from '@/services/AccessService'
     export default {
         data() {
             return {
-                checkAll: false
+                checkAll: false,
+                userAccess: {}
             }
+        },
+        methods: {
+            async getAccess() {
+                await AccessService.userAccess({email: this.$store.user.email})
+                    .then ((res) => {
+                        this.userAccess = res.data.access
+                    })
+            }
+        },
+        created() {
+            // this.getAccess()
         }
     }
 </script>

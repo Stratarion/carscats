@@ -8,18 +8,18 @@
         </div>
         <div class="main">
             <div class="tarifs">
-                <div class="tarifs-row">
+                <div class="tarifs-row" v-for="tarif in tarifs" :key="tarif.id">
                     <div class="tarifs-row-info">
-                        <div class="tarifs-row-info-header">Название тарифа</div>
-                        <div class="tarifs-row-info-description">Описание тарифа Nodemailer is a module for Node.js applications to allow easy as cake email sending. The project got started back in 2010 when there was no sane option to send email messages, today it is the solution most Node.js users turn to by default.</div>
-                        <div class="tarifs-row-info-duration">Длительность тарифа: 1 месяц</div>
+                        <div class="tarifs-row-info-header">{{ tarif.title }}</div>
+                        <div class="tarifs-row-info-description">{{ tarif.description }}</div>
+                        <div class="tarifs-row-info-duration">Длительность тарифа: {{ tarif.duration }} дней</div>
                     </div>
                     <div class="tarifs-row-coast">
                         <div class="tarifs-row-coast-info">
                             <div class="tarifs-row-coast-info-header">Стоимость тарифа:</div>
-                            <div class="tarifs-row-coast-info-price">1000 рублей месяц</div>
+                            <div class="tarifs-row-coast-info-price">{{ tarif.price }} рублей</div>
                         </div>
-                        <div class="tarifs-row-coast-buy">Оплата</div>
+                        <div class="tarifs-row-coast-buy" @click.stop="buyAccess(tarif)">Оплата</div>
                     </div>
                 </div>
             </div>
@@ -29,6 +29,8 @@
 
 <script>
 import TarifsService from '@/services/TarifsService';
+import AccessService from '@/services/AccessService';
+
 
     export default {
         data() {
@@ -42,9 +44,20 @@ import TarifsService from '@/services/TarifsService';
                 const response = await TarifsService.fetchTarifs() 
                 this.tarifs = response.data.tarifs
             },
+            async buyAccess(tarif) {
+                let data = {
+                    email: this.$store.user.email,
+                    tarif_id: tarif._id
+                }
+                await AccessService.addAccess(data)
+            },
+            async getaccess() {
+                await AccessService.userAccess({email: this.$store.user.email}) 
+            },
         },
         mounted() {
             this.gettarifs()
+            // this.getaccess(this.$store.user.email)
         }
     }
 </script>

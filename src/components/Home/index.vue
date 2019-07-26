@@ -1,63 +1,69 @@
 <template>
     <section class="container">
+        <div class="menu">
+            <div class="menu-btns">
+                <div class="menu-btns-close hiden-menu" @click="menuOpen = true" :class="{active: !menuOpen}"><img src="@/img/icons/close.svg"/></div>
+                <div class="menu-btns-open hiden-menu" @click="menuOpen = false" :class="{active: menuOpen}"><img src="@/img/icons/menu.svg"/></div>
+            </div>
+            <div class="menu-top" :class="{'hiden-menu-top': menuOpen}">
+
+                <div class="menu-top-content">
+                    <router-link tag="div" class="logo" to="/" >
+                        <img src="@/img/logo.gif" alt="">
+                    </router-link>
+                    <div >
+                    </div>
+                    <div class="menu-top-links">
+                        <a href="#first" :class="{'active': activeLink == 1}" @click="onMenuLink(1)">Тарифы</a>
+                        <a href="#second" :class="{'active': activeLink == 2}" @click="onMenuLink(2)">Программа</a>
+                        <a href='#thirst' :class="{'active': activeLink == 3}" @click="onMenuLink(3)">Галерея</a>
+                        <a href='#four' :class="{'active': activeLink == 4}" @click="onMenuLink(4)">Контакты</a>
+                    </div>
+                    <div class="userroom">
+                        <router-link :test="'test'"  :to="lkLink()">Личный кабинет</router-link>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="first-screen">
+            <h2 class="first-screen-header"> {{ firstScreenHeader }} </h2>
+            <div class="cards-services">
+                <div class="cards-services-item">
+                    <!-- <img class="cards-services-item-logotype" src="https://carscats.ru/bitrix/templates/landing/img/epc-logo.png" alt=""> -->
+                    <h3 class="cards-services-item-header">Диллерские каталоги</h3>
+                    <p class="cards-services-item-description">Наша организация предоставляет доступ к дилерским каталогам для подбора автозапчастей</p>
+                    <button class="cards-services-item-btn">Купить</button>
+                </div>
+                <div class="cards-services-item">
+                    <!-- <img class="cards-services-item-logotype" src="https://carscats.ru/bitrix/templates/landing/img/epc-logo.png" alt=""> -->
+                    <h3 class="cards-services-item-header">Высокая скорость</h3>
+                    <p class="cards-services-item-description">Высокая скорость работы каталогов на наших серверах</p>
+                    <button class="cards-services-item-btn">Купить</button>
+                </div>
+                <div class="cards-services-item">
+                    <!-- <img class="cards-services-item-logotype" src="https://carscats.ru/bitrix/templates/landing/img/epc-logo.png" alt=""> -->
+                    <h3 class="cards-services-item-header">24/7</h3>
+                    <p class="cards-services-item-description">Круглосуточная работа отдела продаж и службы техподдержки</p>
+                    <button class="cards-services-item-btn">Купить</button>
+                </div>
+                <div class="cards-services-item">
+                    <!-- <img class="cards-services-item-logotype" src="https://carscats.ru/bitrix/templates/landing/img/epc-logo.png" alt=""> -->
+                    <h3 class="cards-services-item-header">Минимальные цены</h3>
+                    <p class="cards-services-item-description">Минимальные цены на рынке, за высокое качество, стабильность и круглосуточную техподдержку.</p>
+                    <button class="cards-services-item-btn">Купить</button>
+                </div>
+                <div class="cards-services-item">
+                    <!-- <img class="cards-services-item-logotype" src="https://carscats.ru/bitrix/templates/landing/img/epc-logo.png" alt=""> -->
+                    <h3 class="cards-services-item-header">Каталоги по ремонту</h3>
+                    <p class="cards-services-item-description">Мы не берем дополнительную плату за каталоги по ремонту</p>
+                    <button class="cards-services-item-btn">Купить</button>
+                </div>
+            </div>
+        </div>
         <section id='first'>
-            <div class="menu">
-                <div class="menu-top">
+            
 
-                    <div class="menu-top-content">
-                        <router-link tag="div" class="logo" to="/" >
-                            <img src="https://carscats.ru/bitrix/templates/landing/img/logo.png"  alt="">
-                        </router-link>
-                        <div >
-                        </div>
-                        <div class="menu-top-links">
-                            <a href="#first" :class="{'active': activeLink == 1}" @click="onMenuLink(1)">Тарифы</a>
-                            <a href="#second" :class="{'active': activeLink == 2}" @click="onMenuLink(2)">Видео</a>
-                            <a href='#thirst' :class="{'active': activeLink == 3}" @click="onMenuLink(3)">Галерея</a>
-                            <a href='#four' :class="{'active': activeLink == 4}" @click="onMenuLink(4)">Контакты</a>
-                        </div>
-                        <div class="userroom">
-                            <router-link :test="'test'"  :to="lkLink()">Личный кабинет</router-link>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="first-screen">
-                <h2 class="first-screen-header"> {{ firstScreenHeader }} </h2>
-                <div class="cards-services">
-                    <div class="cards-services-item">
-                        <img class="cards-services-item-logotype" src="https://carscats.ru/bitrix/templates/landing/img/epc-logo.png" alt="">
-                        <h3 class="cards-services-item-header">EPC ONLINE</h3>
-                        <p class="cards-services-item-description">Доступ к полному набору программ для подбора запчастей (включая VAG группу)</p>
-                        <button class="cards-services-item-btn">Купить</button>
-                    </div>
-                    <div class="cards-services-item">
-                        <img class="cards-services-item-logotype" src="https://carscats.ru/bitrix/templates/landing/img/epc-logo.png" alt="">
-                        <h3 class="cards-services-item-header">EPC ONLINE</h3>
-                        <p class="cards-services-item-description">Доступ к полному набору программ для подбора запчастей (включая VAG группу)</p>
-                        <button class="cards-services-item-btn">Купить</button>
-                    </div>
-                    <div class="cards-services-item">
-                        <img class="cards-services-item-logotype" src="https://carscats.ru/bitrix/templates/landing/img/epc-logo.png" alt="">
-                        <h3 class="cards-services-item-header">EPC ONLINE</h3>
-                        <p class="cards-services-item-description">Доступ к полному набору программ для подбора запчастей (включая VAG группу)</p>
-                        <button class="cards-services-item-btn">Купить</button>
-                    </div>
-                    <div class="cards-services-item">
-                        <img class="cards-services-item-logotype" src="https://carscats.ru/bitrix/templates/landing/img/epc-logo.png" alt="">
-                        <h3 class="cards-services-item-header">EPC ONLINE</h3>
-                        <p class="cards-services-item-description">Доступ к полному набору программ для подбора запчастей (включая VAG группу)</p>
-                        <button class="cards-services-item-btn">Купить</button>
-                    </div>
-                    <div class="cards-services-item">
-                        <img class="cards-services-item-logotype" src="https://carscats.ru/bitrix/templates/landing/img/epc-logo.png" alt="">
-                        <h3 class="cards-services-item-header">EPC ONLINE</h3>
-                        <p class="cards-services-item-description">Доступ к полному набору программ для подбора запчастей (включая VAG группу)</p>
-                        <button class="cards-services-item-btn">Купить</button>
-                    </div>
-                </div>
-            </div>
+            
 
             <div class="plans">
                 <h3 class="plans-header">тарифы</h3>
@@ -65,57 +71,46 @@
                 <p class="plans-description">Вы можете выбрать подходящий именно Вам тарифный план</p>
                 <div class="plans-list">
                     <div class="plans-list-item">
-                        <h3 class="plans-list-item-header">Заголовок</h3>
+                        <h3 class="plans-list-item-header">30 дней</h3>
                         <div class="plans-list-item-body">
-                            <h4 class="plans-list-item-body-price">₽ 1500/мес</h4>
-                            <h5 class="plans-list-item-body-option">характеристика</h5>
-                            <h5 class="plans-list-item-body-option">характеристика</h5>
-                            <h5 class="plans-list-item-body-option">характеристика</h5>
-                            <h5 class="plans-list-item-body-option">характеристика</h5>
+                            <h4 class="plans-list-item-body-price">₽ 1200/мес</h4>
+                            <h5 class="plans-list-item-body-option">Легковые</h5>
+                            <h5 class="plans-list-item-body-option">Грузовые</h5>
+                            <h5 class="plans-list-item-body-option">СпецТехника</h5>
+                            <h5 class="plans-list-item-body-option">Ремонт</h5>
                             <div class="plans-list-item-body-btn">Купить</div>
                         </div>
                     </div>
                     <div class="plans-list-item">
-                        <h3 class="plans-list-item-header">Заголовок</h3>
+                        <h3 class="plans-list-item-header">90 дней</h3>
                         <div class="plans-list-item-body">
-                            <h4 class="plans-list-item-body-price">₽ 1500/мес</h4>
-                            <h5 class="plans-list-item-body-option">характеристика</h5>
-                            <h5 class="plans-list-item-body-option">характеристика</h5>
-                            <h5 class="plans-list-item-body-option">характеристика</h5>
-                            <h5 class="plans-list-item-body-option">характеристика</h5>
+                            <h4 class="plans-list-item-body-price">₽ 3300/мес</h4>
+                            <h5 class="plans-list-item-body-option">Легковые</h5>
+                            <h5 class="plans-list-item-body-option">Грузовые</h5>
+                            <h5 class="plans-list-item-body-option">СпецТехника</h5>
+                            <h5 class="plans-list-item-body-option">Ремонт</h5>
                             <div class="plans-list-item-body-btn">Купить</div>
                         </div>
                     </div>
                     <div class="plans-list-item">
-                        <h3 class="plans-list-item-header">Заголовок</h3>
+                        <h3 class="plans-list-item-header">180 дней</h3>
                         <div class="plans-list-item-body">
-                            <h4 class="plans-list-item-body-price">₽ 1500/мес</h4>
-                            <h5 class="plans-list-item-body-option">характеристика</h5>
-                            <h5 class="plans-list-item-body-option">характеристика</h5>
-                            <h5 class="plans-list-item-body-option">характеристика</h5>
-                            <h5 class="plans-list-item-body-option">характеристика</h5>
+                            <h4 class="plans-list-item-body-price">₽ 6000/мес</h4>
+                            <h5 class="plans-list-item-body-option">Легковые</h5>
+                            <h5 class="plans-list-item-body-option">Грузовые</h5>
+                            <h5 class="plans-list-item-body-option">СпецТехника</h5>
+                            <h5 class="plans-list-item-body-option">Ремонт</h5>
                             <div class="plans-list-item-body-btn">Купить</div>
                         </div>
                     </div>
                     <div class="plans-list-item">
-                        <h3 class="plans-list-item-header">Заголовок</h3>
+                        <h3 class="plans-list-item-header">360 дней</h3>
                         <div class="plans-list-item-body">
-                            <h4 class="plans-list-item-body-price">₽ 1500/мес</h4>
-                            <h5 class="plans-list-item-body-option">характеристика</h5>
-                            <h5 class="plans-list-item-body-option">характеристика</h5>
-                            <h5 class="plans-list-item-body-option">характеристика</h5>
-                            <h5 class="plans-list-item-body-option">характеристика</h5>
-                            <div class="plans-list-item-body-btn">Купить</div>
-                        </div>
-                    </div>
-                    <div class="plans-list-item">
-                        <h3 class="plans-list-item-header">Заголовок</h3>
-                        <div class="plans-list-item-body">
-                            <h4 class="plans-list-item-body-price">₽ 1500/мес</h4>
-                            <h5 class="plans-list-item-body-option">характеристика</h5>
-                            <h5 class="plans-list-item-body-option">характеристика</h5>
-                            <h5 class="plans-list-item-body-option">характеристика</h5>
-                            <h5 class="plans-list-item-body-option">характеристика</h5>
+                            <h4 class="plans-list-item-body-price">₽ 11000/мес</h4>
+                            <h5 class="plans-list-item-body-option">Легковые</h5>
+                            <h5 class="plans-list-item-body-option">Грузовые</h5>
+                            <h5 class="plans-list-item-body-option">СпецТехника</h5>
+                            <h5 class="plans-list-item-body-option">Ремонт</h5>
                             <div class="plans-list-item-body-btn">Купить</div>
                         </div>
                     </div>
@@ -125,13 +120,13 @@
         </section>
         
         <section id='second'>
-            <div class="video-instructions">
-                <h2>видеоинструкции</h2>
-                <div class="video-instructions-body">
-                    <p class="video-instructions-body-description">Хотите разобраться, как работать с каталогами? Посмотрите наши короткие обучающие видео на эту тeму</p>
-                    <div class="video-instructions-body-play">
-                        <img src="http://kulinar.moscow/wp-content/uploads/2019/04/playb.png" alt="">
-                    </div>
+            <div class="download-instructions">
+                <h2>Программа</h2>
+                <div class="download-instructions-body">
+                    <p class="download-instructions-body-description">Чтобы получить доступ к каталогам, скачайте программу по этой ссылке</p>
+                    <a href="/src/files/Screenshot_1.jpg"  class="download-instructions-body-play">
+                        <img src="@/img/download.svg" alt="">
+                    </a>
                 </div>
             </div>
         </section>
@@ -150,11 +145,32 @@
             </div>
         </section>
 
+
+
         <section id='four'>
+            <div class="contacts">
+                <div class="contacts-left">
+                    <h2 class="contacts-left-header">Контакты</h2>
+                    <p class="contacts-left-row">8-800-500-80-14 <b>звонок бесплатный</b></p>
+                    <p class="contacts-left-row"><b>Отдел тех. поддержки:</b> 8(499)686-03-18</p>
+                    <p class="contacts-left-row"><b>e-mail:</b> info@auto-soft.cc</p>
+                    <p class="contacts-left-row"><b>ICQ:</b> 609-622-969</p>
+                </div>
+
+                <div class="contacts-right">
+                    <input type="text" placeholder="Ваше имя" v-model="feedbackName">
+                    <input type="text" placeholder="Ваша почта" v-model="feedbackMail">
+                    <input type="text" placeholder="Ваш телефон" v-model="feedbakPhone">
+                    <textarea rows="6" placeholder="Сообщение" v-model="feedbackText"></textarea>
+                    <div class="contacts-right-send" @click="sendFeedback">Отправить</div>
+                </div>
+
+
+            </div>
             <div class="footer">
                 <a class="footer-link" href="">Договор оферты</a>
                 <a class="footer-link" href="">Политика конфеденциальности</a>
-                <p class="footer-text">2018 © Carscats.ru</p>
+                <p class="footer-text">2019 © auto-soft.cc</p>
             </div>
         </section>
         
@@ -184,7 +200,7 @@
 <script>
 
 import modalTemplate from '@/components/functional/modalWIndow.vue'
-
+import admin from '@/services/admin';
 
     export default {
         data() {
@@ -232,10 +248,40 @@ import modalTemplate from '@/components/functional/modalWIndow.vue'
                 activeLink: 1,
 
                 // заголовок, типо слоган на первом экране
-                firstScreenHeader: 'НАШИ РЕШЕНИЯ ДЛЯ АВТОБИЗНЕСА'
+                firstScreenHeader: 'НАШИ РЕШЕНИЯ ДЛЯ АВТОБИЗНЕСА',
+
+                feedbackText: '',
+                feedbackMail: '',
+                feedbackName: '',
+                feedbakPhone: '',
+
+                // меню адаптива
+                menuOpen: false
+            
+
+                
             }
         },
         methods: {
+            async sendFeedback() {
+                let params = {
+                    sendler: this.feedbackMail,
+                    text: this.feedbackText,
+                    name: this.feedbackName,
+                    phone: this.feedbakPhone
+                }
+                await admin.feedback(params).then(() => {
+                    this.feedbackMail = ''
+                    this.feedbackText = ''
+                    this.feedbakPhone = ''
+                    this.feedbackName = ''
+                })
+            },
+
+            dowloadApplication() {
+                
+            },
+
             changeSlide(direction) {
                 if (direction === 'next') {
                     if (this.currentProgrammScreen !== this.programmScreensList.length) {
@@ -308,9 +354,15 @@ import modalTemplate from '@/components/functional/modalWIndow.vue'
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+$base-color: rgb(119, 54, 0);
+
 section {
     scroll-behavior: smooth; 
+}
+#first {
+    padding-top: 10px;
+	margin-top: -10px;
 }
 #second, #thirst, #four {
     padding-top: 80px;
@@ -324,47 +376,61 @@ section {
     margin: 0 auto;
     width: 100%;
     z-index: 998;
-}
-.menu-top {
-    padding: 10px 30px;
-    background: #fff;
-    box-shadow: 0px 3px 6px 3px rgba(0, 0, 0, 0.06);
-}
-.menu-top-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 90%;
-    margin: 0 auto;
-}
-.menu-top-content .logo img {
-    cursor: pointer;
-}
-.menu-top-links a {
-    margin-right: 10px;
-    cursor: pointer;
-    text-decoration: none;
-    color: black;
-    padding: 8px 20px;
-    border-radius: 20px;
-    width: 120px;
-    display: inline-block;
 
+    &-top {
+        padding: 10px 30px;
+        background: #fff;
+        box-shadow: 0px 3px 6px 3px rgba(0, 0, 0, 0.06);
 
-}
-.menu-top-links a.active {
-    background-color: #28446F;
-    color:#fff;
+        &-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 90%;
+            margin: 0 auto;
+
+            .logo img {
+                cursor: pointer;
+                width: 380px;
+            }
+
+            .userroom a{
+                text-decoration: none;
+                color:  $base-color;
+            }
+        }
+
+        &-links {
+
+            a {
+                margin-right: 10px;
+                cursor: pointer;
+                text-decoration: none;
+                color: black;
+                padding: 8px 20px;
+                border-radius: 20px;
+                display: inline-block;
+
+                .active {
+                    background-color: $base-color;
+                    color:#fff;
+                }
+            }
+        }
+    }
 }
 
+.hiden-menu {
+    display: none;
+}
 
 
 .container {
     text-align: center;
     position: relative;
     scroll-behavior: smooth;
-    
 }
+
 .first-screen {
     padding-top: 100px;
     background-image: url(https://carscats.ru/bitrix/templates/landing/img/hero-area.jpg);
@@ -374,16 +440,16 @@ section {
     background-size: cover;
     padding: 150px 0 400px;
     position: relative;
-}
-.first-screen-header {
-    color: whitesmoke;
-    text-shadow: -2px 0 #2F2E2C, 0 2px #2F2E2C, 2px 0 #2F2E2C, 0 -2px #2F2E2C;
-    font-size: 52px;
-    max-width: 700px;
-    margin: 0 auto;
-    user-select: none;
-}
 
+    &-header {
+        color: whitesmoke;
+        text-shadow: -2px 0 #2F2E2C, 0 2px #2F2E2C, 2px 0 #2F2E2C, 0 -2px #2F2E2C;
+        font-size: 52px;
+        max-width: 700px;
+        margin: 0 auto;
+        user-select: none;
+    }
+}
 
 
 .cards-services {
@@ -394,8 +460,9 @@ section {
     flex-wrap: wrap;
     width: 100%;
 }
-.cards-services-item {
-    width: 220px;
+
+.cards-services-item  {
+    width: 250px;
     height: 350px;
     background: #1e1d1b;
     box-shadow: 10px 10px 8px black;
@@ -406,27 +473,33 @@ section {
     position: relative;
     z-index: 995;
 }
+
 .cards-services-item:hover {
-    background-color: #28446F;
+    background-color: $base-color;
     transform:scale(1.1)
 }
+
 .cards-services-item:hover > .cards-services-item-btn {
     background: #1e1d1b;
 
 }
+
 .cards-services-item-logotype {
     width: 120px;
     margin-bottom: 30px;
 }
+
 .cards-services-item-header {
     margin-bottom: 15px;
 }
+
 .cards-services-item-description {
     line-height: 1.6;
 }
+
 .cards-services-item-btn {
     width: 100%;
-    background-color: #28446F;
+    background-color: $base-color;
     position: absolute;
     border: none;
     font-size: 18px;
@@ -437,16 +510,17 @@ section {
     height: 50px;
     cursor: pointer;
 }
+
 .cards-services-item-btn:focus {
     border: none;
 }
-
 
 .plans-header {
     text-transform: uppercase;
     font-size: 42px;
     margin: 160px 0px 0px;
 }
+
 .plans-header-lens {
     content: '';
     display: inline-block;
@@ -455,28 +529,34 @@ section {
     height: 2px;
     background-color: #2F2E2C;
 }
+
 .plans-description {
     font-size: 18px;
     margin: 20px 0 30px;
 }
+
 .plans-list {
     display: flex;
     justify-content: space-around;
     padding: 0 50px;
     flex-wrap: wrap;
 }
+
 .plans-header {
     color: #333;
 }
+
 .plans-list-item {
     border: 1px solid #f1f1f1;
     padding: 0px 0px 40px 0px;
     margin: 0 0 30px 0;
-    width: 240px;
+    width: 260px;
 }
+
 .plans-list-item:hover {
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
 }
+
 .plans-list-item-header {
     width: 100%;
     background-color: #f1f1f1;
@@ -488,12 +568,15 @@ section {
     font-weight: 700;
 
 }
+
 .plans-list-item-body {
     display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
+
 .plans-list-item-body-price {
     color: #2F2E2C;
     
@@ -501,14 +584,16 @@ section {
     font-weight: 400;
     margin: 20px 0 10px;
 }
+
 .plans-list-item-body-option {
     padding: 10px;
     font-size: 15px;
     border-bottom: 1px dotted #f1f1f1;
     font-weight: 400;
 }
+
 .plans-list-item-body-btn {
-    background: #28446F;
+    background: $base-color;
     position: relative;
     color: #fff;
     z-index: 1;
@@ -516,13 +601,11 @@ section {
     display: block;
     width: 115px;
     padding: 10px 30px;
-    margin: 20px 0px 10px;
+    margin: 20px 0px 0px;
 }
 
-
-
-.video-instructions {
-    background-color: #28446F;
+.download-instructions {
+    background-color: $base-color;
     padding: 60px 0 70px;
     color: #fff;
     display: flex;
@@ -530,12 +613,14 @@ section {
     align-items: center;
 
 }
-.video-instructions h2 {
+
+.download-instructions h2 {
     font-size: 30px;
     text-transform: uppercase;
     margin-bottom: 30px;
 }
-.video-instructions-body {
+
+.download-instructions-body {
     padding: 40px 0px 50px;
     border-top: 1px solid rgba(0,0,0,.1);
     display: flex;
@@ -543,12 +628,14 @@ section {
     flex-direction: column;
     align-items: center;
 }
-.video-instructions-body-description {
+
+.download-instructions-body-description {
     width: 85%;
     font-size: 18px;
     font-weight: 400;
 }
-.video-instructions-body-play {
+
+.download-instructions-body-play {
     cursor: pointer;
     margin: 50px 0 0;
 
@@ -556,7 +643,8 @@ section {
     border-radius: 50%;
     border: 1px solid #fff; 
 }
-.video-instructions-body-play img {
+
+.download-instructions-body-play img {
     width: 50px;
 }
 
@@ -644,22 +732,80 @@ section {
 }
 
 
+.contacts {
+    display: flex;
+    padding: 100px 150px 50px;
+    background-color: $base-color;
+    color: white;
+
+    & > div {
+        width: 50%;
+    }
+
+    &-left {
+
+        &-header, &-row {
+            text-align: left;
+        }
+
+        &-header {
+            font-size: 32px;
+            margin-bottom: 50px;
+        }
+        
+        &-row {
+            font-size: 24px;
+            margin-bottom: 20px;
+        } 
+    }
+
+    &-right {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+
+        input {
+            margin-bottom: 20px;
+        }
+
+
+        input, textarea {
+            width: 100%;
+            padding: 10px 15px;
+            background: none;
+            border: 2px solid #fff;
+            color: #fff;
+            font-size: 20px;
+        }
+
+        &-send {
+            padding: 10px 15px;
+            background-color: rgb(3, 255, 58);
+            border: none;
+            width: 200px;
+            margin-top: 30px;
+        }
+
+    }
+}
+
+
 .footer {
     padding: 30px;
-    background-color: #292f35;
+    background-color: #110202;
     color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-.footer-link {
-    text-decoration: none;
-    color: #fff;
-    margin: 0 10px 0 0;
-    padding: 0 10px;
-    border-right: 1px solid #fff;
-}
 
+    &-link {
+        text-decoration: none;
+        color: #fff;
+        margin: 0 10px 0 0;
+        padding: 0 10px;
+        border-right: 1px solid #fff;
+    }
+}
 
 /* стили модального окна  */
 .slider {
@@ -667,7 +813,6 @@ section {
     height: 500px;
 
 }
-
 
 .slider-slide {
     height: 500px;
@@ -738,20 +883,1157 @@ section {
 
 /* медиа */
 
-@media screen and (max-width: 1320px) {
-    .cards-services {
-        position: relative;
+@media screen and (max-width: 1455px) {
+
+    .menu {
+
+        &-top {
+            padding: 8px 23px;
+
+            &-content {
+
+                .logo img {
+                    cursor: pointer;
+                    width: 270px;
+                }
+
+                .userroom a{
+                    text-decoration: none;
+                    color:  $base-color;
+                    font-size: 14px;
+                }
+            }
+
+            &-links {
+
+                a {
+                    margin-right: 8px;
+                    font-size: 14px;
+                    padding: 6px 12px;
+                    border-radius: 20px;
+                }
+            }
+        }
     }
+    
     .first-screen {
-        padding-bottom: 50px;
+        padding-top: 100px;
+        padding-bottom: 20px;
+        &-header {
+            font-size: 42px;
+        }
     }
+
+    .cards {
+
+        &-services {
+            position: relative;
+
+            &-item {
+                width: 180px;
+                height: 320px;
+
+                &-header {
+                    font-size: 16px;
+                }
+
+                &-description {
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+    
+    
     .plans-header {
-        margin-top: 60px;
+        font-size: 32px;
+        margin: 80px 0px 0px;
     }
+
+    .plans-header-lens {
+        width: 50px;
+    }
+
+    .plans-description {
+        font-size: 16px;
+        margin: 15px 0 23px;
+    }
+
+    .plans-list {
+        padding: 0 40px;
+    }
+
+    .plans-list-item {
+        padding: 0px 0px 30px 0px;
+        margin: 0 0 23px 0;
+        width: 200px;
+    }
+
+    .plans-list-item-header {
+
+        padding: 20px 15px;
+        font-size: 20px;
+    }
+
+    .plans-list-item-body-price {
+        font-size: 22px;
+        margin: 20px 0 10px;
+    }
+
+    .plans-list-item-body-option {
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    .plans-list-item-body-btn {
+        width: 100px;
+        padding: 10px 20px;
+        margin: 15px 0px 0px;
+        font-size: 14px;
+    }
+
+    .download-instructions {
+        padding: 48px 0 56px;
+    }
+
+    .download-instructions h2 {
+        font-size: 32px;
+        margin-bottom: 22px;
+    }
+
+    .download-instructions-body {
+        padding: 30px 0px 32px;
+    }
+
+    .download-instructions-body-description {
+        font-size: 16px;
+    }
+
+    .download-instructions-body-play {
+        margin: 40px 0 0;
+        padding: 15px;
+    }
+
+    .download-instructions-body-play img {
+        width: 38px;
+    }
+
+
+    .programm-screens {
+        padding: 40px 0;
+    }
+    .programm-screens-header {
+        font-size: 32px;
+        margin-bottom: 15px;
+    }
+    .programm-screens-line {
+        width: 56px;
+    }
+    .programm-screens-desription {
+        font-size: 15px;
+        margin: 23px 0;
+        padding: 0 15px;
+
+    }
+    .programm-screens-gallery {
+        padding: 40px 0px;
+        max-width: 800px;
+
+    }
+    .programm-screens-gallery-item {
+        width: 240px;
+        height: 150px;
+        margin: 0 0 23px 0;
+
+    }
+    .programm-screens-gallery-item-image {
+        width: 240px;
+        height: 150px;
+    }
+    .programm-screens-gallery-item-hover {
+        font-size: 18px;
+        padding: 8px;
+    }
+
+    .contacts {
+        padding: 70px 110px 40px;
+
+        &-left {
+
+            &-header {
+                font-size: 24px;
+                margin-bottom: 38px;
+            }
+            
+            &-row {
+                font-size: 18px;
+                margin-bottom: 15px;
+            } 
+        }
+
+        &-right {
+
+            input {
+                margin-bottom: 15px;
+            }
+
+            input, textarea {
+                padding: 8px 10px;
+                font-size: 15px;
+            }
+
+            &-send {
+                padding: 8px 10px;
+                width: 150px;
+                margin-top: 22px;
+            }
+        }
+    }
+
+
+    .footer {
+        padding: 23px;
+
+        &-link {
+            margin: 0 8px 0 0;
+            padding: 0 8px;
+            font-size: 14px;
+        }
+    }
+
+    /* стили модального окна  */
+    .slider {
+        position: relative;
+        height: 380px;
+
+    }
+
+
+    .slider-slide {
+        height: 380px;
+    }
+    .slider-slide-current {
+        width: 600px;
+    }
+
+
+    .slider-btn::after {
+        width:40px;
+        height: 40px;
+        margin-top: -20px;
+        padding: 8px;
+        border-radius: 50%;
+        background-size: 38px;
+        background-position: 10px 8px;
+    }
+    .slider-btn-next::after {
+        right: -15px;
+    }
+    .slider-btn-prev::after {
+        left: -15px;
+    }
+
+    .slider-description {
+        margin-top: 30px;
+        padding: 0 30px;
+        font-size: 14px
+    }
+
 }
 
-@media screen and (max-width: 1080px) {
+@media screen and (max-width: 1150px) {
+
+    .menu {
+
+        &-top {
+            padding: 6px 17px;
+
+            &-content {
+
+                .logo img {
+                    width: 180px;
+                }
+
+                .userroom a{
+                    font-size: 8px;
+                }
+            }
+
+            &-links {
+
+                a {
+                    margin-right: 6px;
+                    font-size: 10px;
+                    padding: 5px 8px;
+                    border-radius: 15px;
+                }
+            }
+        }
+    }
+    
+    .first-screen {
+        padding-top: 75px;
+        padding-bottom: 15px;
+        &-header {
+            font-size: 32px;
+        }
+    }
+
+    .cards {
+
+        &-services {
+
+            &-item {
+                width: 170px;
+                height: 260px;
+                margin: 10px;
+
+                &-header {
+                    font-size: 14px;
+                }
+
+                &-description {
+                    font-size: 12px;
+                }
+
+                &-btn {
+                    font-size: 14px;
+                    height: 40px;
+                }
+            }
+        }
+    }
+    
+    
+    .plans-header {
+        font-size: 24px;
+        margin: 60px 0px 0px;
+    }
+
+    .plans-header-lens {
+        width: 40px;
+    }
+
+    .plans-description {
+        font-size: 14px;
+        margin: 10px 0 17px;
+    }
+
+    .plans-list {
+        padding: 0 30px;
+    }
+
+    .plans-list-item {
+        padding: 0px 0px 23px 0px;
+        margin: 0 0 17px 0;
+        width: 170px;
+    }
+
+    .plans-list-item-header {
+
+        padding: 15px 12px;
+        font-size: 15px;
+    }
+
+    .plans-list-item-body-price {
+        font-size: 16px;
+        margin: 15px 0 9px;
+    }
+
+    .plans-list-item-body-option {
+        padding: 6px;
+        font-size: 9px;
+    }
+
+    .plans-list-item-body-btn {
+        width: 80px;
+        padding: 8px 15px;
+        margin: 10px 0px 0px;
+        font-size: 12px;
+    }
+
+    .download-instructions {
+        padding: 38px 0 46px;
+    }
+
+    .download-instructions h2 {
+        font-size: 24px;
+        margin-bottom: 16px;
+    }
+
+    .download-instructions-body {
+        padding: 24px 0px 24px;
+    }
+
+    .download-instructions-body-description {
+        font-size: 14px;
+    }
+
+    .download-instructions-body-play {
+        margin: 30px 0 0;
+        padding: 12px;
+    }
+
+    .download-instructions-body-play img {
+        width: 28px;
+    }
+
+
+    .programm-screens {
+        padding: 30px 0;
+    }
+    .programm-screens-header {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+    .programm-screens-line {
+        width: 42px;
+    }
+    .programm-screens-desription {
+        font-size: 11px;
+        margin: 17px 0;
+        padding: 0 11px;
+
+    }
+    .programm-screens-gallery {
+        padding: 30px 0px;
+        max-width: 600px;
+
+    }
+    .programm-screens-gallery-item {
+        width: 180px;
+        height: 110px;
+        margin: 0 0 17px 0;
+
+    }
+    .programm-screens-gallery-item-image {
+        width: 180px;
+        height: 110px;
+    }
+    .programm-screens-gallery-item-hover {
+        font-size: 16px;
+        padding: 6px;
+    }
+
+    .contacts {
+        padding: 50px 80px 30px;
+
+        &-left {
+
+            &-header {
+                font-size: 18px;
+                margin-bottom: 30px;
+            }
+            
+            &-row {
+                font-size: 14px;
+                margin-bottom: 12px;
+            } 
+        }
+
+        &-right {
+
+            input {
+                margin-bottom: 10px;
+            }
+
+            input, textarea {
+                padding: 6px 8px;
+                font-size: 12px;
+            }
+
+            &-send {
+                padding: 6px 9px;
+                width: 130px;
+                margin-top: 18px;
+            }
+        }
+    }
+
+
+    .footer {
+        padding: 17px;
+
+        &-link {
+            margin: 0 6px 0 0;
+            padding: 0 6px;
+            font-size: 11px;
+        }
+    }
+
+    /* стили модального окна  */
+    .slider {
+        position: relative;
+        height: 300px;
+
+    }
+
+
+    .slider-slide {
+        height: 300px;
+    }
+    .slider-slide-current {
+        width: 450px;
+    }
+
+
+    .slider-btn::after {
+        width:40px;
+        height: 40px;
+        margin-top: -20px;
+        padding: 8px;
+        border-radius: 50%;
+        background-size: 38px;
+        background-position: 10px 8px;
+    }
+    .slider-btn-next::after {
+        right: -15px;
+    }
+    .slider-btn-prev::after {
+        left: -15px;
+    }
+
+    .slider-description {
+        margin-top: 25px;
+        padding: 0 25px;
+        font-size: 12px
+    }
 
 }
+
+
+@media screen and (max-width: 955px) {
+    .hiden-menu-top {
+        transform: translateY(-500px);
+        opacity: 0;
+    }
+    .menu {
+        
+        &-top {
+            padding: 6px 17px 20px;
+            transition: all 0.4s;
+            opacity: 1;
+            &-content {
+                display: flex;
+                flex-direction: column;
+
+                .logo img {
+                    width: 180px;
+                }
+
+                .userroom a{
+                    font-size: 8px;
+                }
+            }
+
+            &-links {
+                display: flex;
+                flex-direction: column;
+
+                a {
+                    margin-right: 6px;
+                    font-size: 10px;
+                    padding: 5px 8px;
+                    border-radius: 15px;
+                }
+            }
+        }
+
+        &-btns {
+
+            div {
+                width: 30px;
+                height: 30px;
+                position: absolute;
+                top: 20px;
+                opacity: 0;
+                transition: 0.4s;
+
+                &.active {
+                    opacity: 1;
+                }
+            }
+
+            &-close {
+                right: 20px;
+
+            }
+
+            &-open {
+                left: 20px;
+                background-color: #fff;
+                border-radius: 50%;
+                border: 1px solid #000;
+                padding: 7px;
+
+            }
+        }
+    }
+
+    .hiden-menu {
+        display: block;
+    }
+    
+    .first-screen {
+        padding-top: 4vw;
+        padding-bottom: 1.2vw;
+        &-header {
+            font-size: 2em;
+            padding: 0 10vw;
+        }
+    }
+
+    .cards {
+
+        &-services {
+
+            &-item {
+                width: 27vw;
+                min-width: 200px;
+                max-width: 300px;
+                height: 25vw;
+                min-height: 250px;
+                margin: 10px;
+
+                &-header {
+                    font-size: 1.0em;
+                }
+
+                &-description {
+                    font-size: 0.8em;
+                }
+
+                &-btn {
+                    font-size: 0.8em;
+                    height: 4vw;
+                    min-height: 20px;
+
+                }
+            }
+        }
+    }
+    
+    
+    .plans-header {
+        font-size: 24px;
+        margin: 60px 0px 0px;
+    }
+
+    .plans-header-lens {
+        width: 40px;
+    }
+
+    .plans-description {
+        font-size: 14px;
+        margin: 10px 0 17px;
+    }
+
+    .plans-list {
+        padding: 0 30px;
+    }
+
+    .plans-list-item {
+        padding: 0px 0px 23px 0px;
+        margin: 0 0 17px 0;
+        width: 170px;
+    }
+
+    .plans-list-item-header {
+
+        padding: 15px 12px;
+        font-size: 15px;
+    }
+
+    .plans-list-item-body-price {
+        font-size: 16px;
+        margin: 15px 0 9px;
+    }
+
+    .plans-list-item-body-option {
+        padding: 6px;
+        font-size: 9px;
+    }
+
+    .plans-list-item-body-btn {
+        width: 80px;
+        padding: 8px 15px;
+        margin: 10px 0px 0px;
+        font-size: 12px;
+    }
+
+    .download-instructions {
+        padding: 38px 0 46px;
+    }
+
+    .download-instructions h2 {
+        font-size: 24px;
+        margin-bottom: 16px;
+    }
+
+    .download-instructions-body {
+        padding: 24px 0px 24px;
+    }
+
+    .download-instructions-body-description {
+        font-size: 14px;
+    }
+
+    .download-instructions-body-play {
+        margin: 30px 0 0;
+        padding: 12px;
+    }
+
+    .download-instructions-body-play img {
+        width: 28px;
+    }
+
+
+    .programm-screens {
+        padding: 30px 0;
+    }
+    .programm-screens-header {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+    .programm-screens-line {
+        width: 42px;
+    }
+    .programm-screens-desription {
+        font-size: 11px;
+        margin: 17px 0;
+        padding: 0 11px;
+
+    }
+    .programm-screens-gallery {
+        padding: 30px 0px;
+        max-width: 600px;
+
+    }
+    .programm-screens-gallery-item {
+        width: 180px;
+        height: 110px;
+        margin: 0 0 17px 0;
+
+    }
+    .programm-screens-gallery-item-image {
+        width: 180px;
+        height: 110px;
+    }
+    .programm-screens-gallery-item-hover {
+        font-size: 16px;
+        padding: 6px;
+    }
+
+    .contacts {
+        padding: 50px 80px 30px;
+        justify-content: center;
+        flex-wrap: wrap;
+        &-left, &-right {
+            min-width: 300px;
+        }
+
+        &-left {
+
+            &-header {
+                font-size: 18px;
+                margin-bottom: 30px;
+            }
+            
+            &-row {
+                font-size: 14px;
+                margin-bottom: 12px;
+            } 
+        }
+
+        &-right {
+            margin-top: 5vw;
+
+            input {
+                margin-bottom: 10px;
+            }
+
+            input, textarea {
+                padding: 6px 8px;
+                font-size: 12px;
+            }
+
+            &-send {
+                padding: 6px 9px;
+                width: 100px;
+                margin-top: 18px;
+                font-size: 14px;
+            }
+        }
+    }
+
+
+    .footer {
+        padding: 17px;
+
+        &-link {
+            margin: 0 6px 0 0;
+            padding: 0 6px;
+            font-size: 11px;
+        }
+    }
+
+    /* стили модального окна  */
+    .slider {
+        position: relative;
+        height: 40vw;
+
+    }
+
+
+    .slider-slide {
+        height: 40vw;
+    }
+    .slider-slide-current {
+        width: 55vw;
+    }
+
+
+    .slider-btn::after {
+        width:40px;
+        height: 40px;
+        margin-top: -20px;
+        padding: 8px;
+        border-radius: 50%;
+        background-size: 38px;
+        background-position: 10px 8px;
+    }
+    .slider-btn-next::after {
+        right: -15px;
+    }
+    .slider-btn-prev::after {
+        left: -15px;
+    }
+
+    .slider-description {
+        margin-top: 25px;
+        padding: 0 25px;
+        font-size: 12px
+    }
+
+}
+
+@media screen and (max-width: 480px) {
+    .hiden-menu-top {
+        transform: translateY(-500px);
+        opacity: 0;
+    }
+    .menu {
+        
+        &-top {
+            padding: 6px 17px 20px;
+            transition: all 0.4s;
+            opacity: 1;
+            &-content {
+                display: flex;
+                flex-direction: column;
+
+                .logo img {
+                    width: 180px;
+                }
+
+                .userroom a{
+                    font-size: 8px;
+                }
+            }
+
+            &-links {
+                display: flex;
+                flex-direction: column;
+
+                a {
+                    margin-right: 6px;
+                    font-size: 10px;
+                    padding: 5px 8px;
+                    border-radius: 15px;
+                }
+            }
+        }
+
+        &-btns {
+
+            div {
+                width: 30px;
+                height: 30px;
+                position: absolute;
+                top: 20px;
+                opacity: 0;
+                transition: 0.4s;
+
+                &.active {
+                    opacity: 1;
+                }
+            }
+
+            &-close {
+                right: 20px;
+
+            }
+
+            &-open {
+                left: 50px;
+                background-color: #fff;
+                border-radius: 50%;
+                border: 1px solid #000;
+                padding: 7px;
+
+            }
+        }
+    }
+
+    .hiden-menu {
+        display: block;
+    }
+    
+    .first-screen {
+        padding-top: 4vw;
+        padding-bottom: 1.2vw;
+        &-header {
+            font-size: 2em;
+            padding: 0 10vw;
+        }
+    }
+
+    .cards {
+
+        &-services {
+
+            &-item {
+                width: 27vw;
+                min-width: 200px;
+                max-width: 300px;
+                height: 25vw;
+                min-height: 250px;
+                margin: 10px;
+
+                &-header {
+                    font-size: 1.0em;
+                }
+
+                &-description {
+                    font-size: 0.8em;
+                }
+
+                &-btn {
+                    font-size: 0.8em;
+                    height: 4vw;
+                    min-height: 20px;
+
+                }
+            }
+        }
+    }
+    
+    
+    .plans-header {
+        font-size: 24px;
+        margin: 60px 0px 0px;
+    }
+
+    .plans-header-lens {
+        width: 40px;
+    }
+
+    .plans-description {
+        font-size: 14px;
+        margin: 10px 0 17px;
+    }
+
+    .plans-list {
+        padding: 0 30px;
+    }
+
+    .plans-list-item {
+        padding: 0px 0px 23px 0px;
+        margin: 0 0 17px 0;
+        width: 170px;
+    }
+
+    .plans-list-item-header {
+
+        padding: 15px 12px;
+        font-size: 15px;
+    }
+
+    .plans-list-item-body-price {
+        font-size: 16px;
+        margin: 15px 0 9px;
+    }
+
+    .plans-list-item-body-option {
+        padding: 6px;
+        font-size: 9px;
+    }
+
+    .plans-list-item-body-btn {
+        width: 80px;
+        padding: 8px 15px;
+        margin: 10px 0px 0px;
+        font-size: 12px;
+    }
+
+    .download-instructions {
+        padding: 38px 0 46px;
+    }
+
+    .download-instructions h2 {
+        font-size: 24px;
+        margin-bottom: 16px;
+    }
+
+    .download-instructions-body {
+        padding: 24px 0px 24px;
+    }
+
+    .download-instructions-body-description {
+        font-size: 14px;
+    }
+
+    .download-instructions-body-play {
+        margin: 30px 0 0;
+        padding: 12px;
+    }
+
+    .download-instructions-body-play img {
+        width: 28px;
+    }
+
+
+    .programm-screens {
+        padding: 30px 0;
+    }
+    .programm-screens-header {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+    .programm-screens-line {
+        width: 42px;
+    }
+    .programm-screens-desription {
+        font-size: 11px;
+        margin: 17px 0;
+        padding: 0 11px;
+
+    }
+    .programm-screens-gallery {
+        padding: 30px 0px;
+        max-width: 600px;
+
+    }
+    .programm-screens-gallery-item {
+        width: 180px;
+        height: 110px;
+        margin: 0 0 17px 0;
+
+    }
+    .programm-screens-gallery-item-image {
+        width: 180px;
+        height: 110px;
+    }
+    .programm-screens-gallery-item-hover {
+        font-size: 16px;
+        padding: 6px;
+    }
+
+    .contacts {
+        padding: 50px 80px 30px;
+        justify-content: center;
+        flex-wrap: wrap;
+        &-left, &-right {
+            min-width: 300px;
+        }
+
+        &-left {
+
+            &-header {
+                font-size: 18px;
+                margin-bottom: 30px;
+            }
+            
+            &-row {
+                font-size: 14px;
+                margin-bottom: 12px;
+            } 
+        }
+
+        &-right {
+            margin-top: 5vw;
+
+            input {
+                margin-bottom: 10px;
+            }
+
+            input, textarea {
+                padding: 6px 8px;
+                font-size: 12px;
+            }
+
+            &-send {
+                padding: 6px 9px;
+                width: 17vw;
+                margin-top: 18px;
+                font-size: 14px;
+            }
+        }
+    }
+
+
+    .footer {
+        padding: 17px;
+
+        &-link {
+            margin: 0 6px 0 0;
+            padding: 0 6px;
+            font-size: 11px;
+        }
+    }
+
+    /* стили модального окна  */
+    .slider {
+        position: relative;
+        height: 40vw;
+
+    }
+
+
+    .slider-slide {
+        height: 40vw;
+    }
+    .slider-slide-current {
+        width: 55vw;
+    }
+
+
+    .slider-btn::after {
+        width:40px;
+        height: 40px;
+        margin-top: -20px;
+        padding: 8px;
+        border-radius: 50%;
+        background-size: 38px;
+        background-position: 10px 8px;
+    }
+    .slider-btn-next::after {
+        right: -15px;
+    }
+    .slider-btn-prev::after {
+        left: -15px;
+    }
+
+    .slider-description {
+        margin-top: 25px;
+        padding: 0 25px;
+        font-size: 12px
+    }
+
+}
+
+
+
+
 
 </style>
